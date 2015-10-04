@@ -19,7 +19,6 @@ My overall plan for time management in Phase 0 is actually to put in lots of "ex
 
 1.  A shell is the direct interface between the user and the underlying operating system.  Shells can be CLIs (Command Line Interfaces) as shown in MS-DOS pre-Windows and BASH in Unix.  A  shell can also be a GUI (Graphical User Interface), like Windows or OSX, though often the accessibility of a GUI reduces the flexibility and power available in a CLI.  BASH is 25+ years old and has become the standard Unix shell, I suspect because it is built into Macs.  It stands for Bourne Again SHell, a pun on the name of the author of the prevailing shell at the time.
 
- 
 
 2. The hour long video of Steven talking about what was on screen in the CLI was truly painful!  It took me multiple tries to get through.  Although I may be a multi-modal learner, I am pretty sure lectures on programming without any "hands-on-keyboard" are going to be hard for me to get the most out of.
 
