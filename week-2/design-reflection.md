@@ -1,8 +1,7 @@
-!DOCFILE html
-![site map](/imgs/SiteMap.JPG "My Site Map")
+![My Site Map](/imgs/SiteMap.JPG)
 
 #What are the 6 Phases of Web Design?
-This comes from the article by [six phases](http://www.idesignstudios.com/blog/web-design/phases-web-design-development-process/#.Vht0MRNVikp "Selene Bowlby").
+This comes from the article by [Selene Bowlby](http://www.idesignstudios.com/blog/web-design/phases-web-design-development-process/#.Vht0MRNVikp "Selene Bowlby").
 - Information Gathering: we did this for our site by collecting links and the like
 - Planning: we did this for our site by building a simple site map
 - Design: this is look and feel of the website, which I will find a challenge!
@@ -24,7 +23,7 @@ Design and user experience are not something you can successfully just copy from
 
 #What is user experience design and why is it valuable? 
 
-Per [Smashing Mag](http://www.smashingmagazine.com/2010/10/what-is-user-experience-design-overview-tools-and-resources/ "Jacob Gube") UX design is aimed at understanding and improving how users feel about a system, with some of the topics being:
+Per [Jacob Gube](http://www.smashingmagazine.com/2010/10/what-is-user-experience-design-overview-tools-and-resources/ "Jacob Gube") UX design is aimed at understanding and improving how users feel about a system, with some of the topics being:
 - ease of use
 - perception of value
 - utility
