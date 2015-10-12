@@ -1,5 +1,5 @@
-![Index wireframe](/imgs/wireframe-index.png)
-![Blog Index wireframe](/imgs/wireframe-blog-index.png)
+![Index wireframe](imgs/wireframe-index.png)
+![Blog Index wireframe](imgs/wireframe-blog-index.png)
 
 #What is a wireframe?
 A wireframe is a sketch of what the webpage's basic structure will look like.  It has labels for different shapes and features, but no text, formatting, photos, background or other features.
