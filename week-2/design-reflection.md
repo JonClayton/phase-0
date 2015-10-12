@@ -1,4 +1,4 @@
-![site map](/imgs/SiteMap.JPG "My Site Map")
+![My Site Map](/imgs/SiteMap.JPG)
 
 #What are the 6 Phases of Web Design?
 This comes from the article by [Selene Bowlby](http://www.idesignstudios.com/blog/web-design/phases-web-design-development-process/#.Vht0MRNVikp "Selene Bowlby").
