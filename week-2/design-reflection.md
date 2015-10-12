@@ -1,4 +1,3 @@
-!DOCFILE html
 ![site map](/imgs/SiteMap.JPG "My Site Map")
 
 #What are the 6 Phases of Web Design?
