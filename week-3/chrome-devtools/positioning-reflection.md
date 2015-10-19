@@ -36,6 +36,6 @@
 
 ##What was your impression of this challenge overall? (love, hate, and why?)
 	
-	I loved it because it was a "play with until you solve it."
+	I loved it because it was a "play with until you solve it." 
 
 	I hated it because I think we got fouled up by not really understanding the four different positions, so it turned out to be trial and error and not really learning well. But this reflection has corrected that. I find the reflections are where I really refine what I learned by having to get it down on "paper."
