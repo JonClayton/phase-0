@@ -1,17 +1,15 @@
-![Exercise 1](imgs/MP3-4R3-1)
-![Exercise 2](imgs/MP3-4R3-2)
-![Exercise 3](imgs/MP3-4R3-3)
-![Exercise 4](imgs/MP3-4R3-4)
-![Exercise 5](imgs/MP3-4R3-5)
-![Exercise 6](imgs/MP3-4R3-6)
-![Exercise 7](imgs/MP3-4R3-7)
-![Exercise 8](imgs/MP3-4R3-8)
-![Exercise 9](imgs/MP3-4R3-9)
+![Exercise 1](imgs/MP3-4R3-1.png)
+![Exercise 2](imgs/MP3-4R3-2.png)
+![Exercise 3](imgs/MP3-4R3-3.png)
+![Exercise 4](imgs/MP3-4R3-4.png)
+![Exercise 5](imgs/MP3-4R3-5.png)
+![Exercise 6](imgs/MP3-4R3-6.png)
+![Exercise 7](imgs/MP3-4R3-7.png)
+![Exercise 8](imgs/MP3-4R3-8.png)
+![Exercise 9](imgs/MP3-4R3-9.png)
 
 How can you use Chrome's DevTools inspector to help you format or position elements?
-
-
-
+	It lets you turn on and off relevant parts of the CSS and add new CSS.  It's particularly nice because when you select an element it shows only the CSS that applies to that element.
 
 How can you resize elements on the DOM using CSS?
 	The easiest way to resize given the format of the CSS file was to change the height and width. You can change this within that element's type (class/ID, etc.) or in the parent type if the element's type has no settings for size.
