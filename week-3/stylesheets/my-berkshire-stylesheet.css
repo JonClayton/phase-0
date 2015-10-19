@@ -69,3 +69,49 @@ h4 {
     font-variant: caps;
 }
 
+
+
+/*  What is important to know when linking an external file (like a stylesheet)
+to an HTML file?
+
+    The most important thing to know is the link command and required arguments
+    in HTML. The next most important thing to know is the file location, which
+    will need to be written either as an absolute reference or a relative one
+    that will actually work given where the HTML file and the stylesheet reside
+    at the time it is called
+
+What tricks did you use to help you with positioning? How hard was it to get the
+site as you wanted it?  T
+
+    I'm not sure what we did involved tricks as much as fiddling.  The hardest
+    things were the smallest things, like the space that appeared at the top of
+    the columns due to unexpected margins imposed by Chrome. he closest thing to
+    a trick was using a bottom border as a replacement for horizontal lines
+    between sections of the page.
+
+What CSS did you use to modify the element style (like size, color, etc.)
+
+    We used various font CSS (variant, size, align, color), background color,
+    margins and borders, line height, and we used columns, which I am guessing
+    was not typical. I bet most people used a table to create the two columns of
+    links.
+
+
+Did you modify the HTML to include classes or ids? If so, which did you chose
+and why? If you didn't, how would you know which one to add to your HTML?
+
+     We were lazy and just used the various h1..h6 available to us. I may go
+     back and create classes just so I know better how to use them, but with so
+     few distinct elements in the page, the levels of heading were sufficient to
+     cover all our needs.
+
+When you compared your site to the actual code base, which do you think had
+cleaner code that followed best practices and why?
+
+    It was of course hilarious to see that the "real" site is so ugly and
+    reliant on inline formatting. Our HTML is much easier to read, and very
+    simple to update, while the "real" code seems very fragile when they are
+    adding or changing content.
+
+
+*/
