@@ -1,3 +1,27 @@
-* {
-	background-color: red;
+debug {
+    background-color: red;
+}
+
+header {
+    margin-bottom: 50px;
+}
+
+.column-1 {
+    position: static;
+    background-color: red;
+    margin-left: 10%;
+    display: inline-block;
+    width: 35%;
+}
+
+.column-2 {
+    position: absolute;
+    background-color: red;
+    margin-left: 10%;
+    display: inline-block;
+    width: 35%;
+}
+
+footer {
+    margin-top: 30px;
 }
