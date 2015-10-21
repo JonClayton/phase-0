@@ -1,12 +1,21 @@
 # Solution Below
-num1=101792
+num1=8675309
 num2=16
 
 sum=num2+num1
 difference=num1-num2
-quotient=num1.to_f/num2.to_f
 product=num1*num2
+
+quotient=num1.to_f/num2.to_f
+#The below return the integer quotient (e.g. the above result rounded down)
+#quotient=num1/num2
+#quotient=num1.div(num2)
+#quotient=num1.divmod(num2)[0]
+
+#all of the below return the same
 modulus=num1%num2
+modulus=num1.modulo(num2)
+modulus=num1.divmod(num2)[1]
 
 # RSpec Tests. They are included in this file because the local variables you are creating are not accessible across files. If we try to run these files as a separate file per normal operation, the local variable checks will return nil.
 
