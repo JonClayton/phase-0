@@ -13,5 +13,10 @@
 
 # Your Solution Below
 def longest_string(list_of_words)
-  # Your code goes here!
+#  list_of_words.max_by {|x| x.size}  #The easy way		
+  longest = list_of_words[0]
+  list_of_words.each do |element|
+  	longest = element if element.size > longest.size
+  end
+  return longest
 end

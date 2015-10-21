@@ -12,5 +12,10 @@
 
 #Your Solution Below
 def shortest_string(list_of_words)
-  # Your code goes here!
+#  list_of_words.min_by {|x| x.size} #The easy way
+  shortest = list_of_words[0]
+  list_of_words.each do |element|
+  	shortest = element if element.size < shortest.size
+  end
+  return shortest
 end
