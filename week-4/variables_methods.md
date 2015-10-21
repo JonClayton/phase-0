@@ -1,4 +1,4 @@
-I apologize if it is a problem but linking to a `.rb` file made it hard to set up the comments in a readable way, and links would also be difficult. So I'm using this `.md` document to give readable reflections. Below I include the code and links to the `.rb` files.
+I apologize if it is a problem but linking to a `.rb` file made it hard to set up the comments in a readable way, and links would also be difficult. So I'm using this `.md` document to give readable reflections. Below I include the code and links to the `.rb` files.  I encourage you to follow the link to this document to make it easier to read and see working links.
 
 ##How do you define a local variable?
 Ruby makes it easy. Just assign a value to the variable (meaning set the variable equal to something). 
