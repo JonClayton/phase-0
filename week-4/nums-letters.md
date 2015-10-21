@@ -12,3 +12,57 @@ Float division looks "right." Integer division often looks wrong. Integer divisi
 9.modulo(5) => 1
 9.remainder(5) => 4
 ```
+
+##How does Ruby handle addition, subtraction, multiplication, and division of numbers?
+Not sure what is meant by this.  Ruby allows the use of the +-*/% operators on integers and other numeric classes
+
+##What is the difference between integers and floats?
+
+
+##What is the difference between integer and float division?
+
+
+##What are strings? Why and when would you use them?
+
+
+##What are local variables? Why and when would you use them?
+
+
+##How was this challenge? Did you get a good review of some of the basics?
+
+
+##Links to challenge solutions, and since they are short, the solutions themselves:
+
+[4.2.1 Defining Variables](https://github.com/JonClayton/phase-0/blob/master/week-4/defining-variables.rb) 
+```ruby
+first_name="John"
+last_name="Kennedy"
+age=98
+```
+
+[4.2.2 Simple String](https://github.com/JonClayton/phase-0/blob/master/week-4/simple-string.rb)
+```ruby
+old_string="Ruby is cool"
+new_string=old_string.reverse.upcase
+```
+
+[4.2.3 Basic Math](https://github.com/JonClayton/phase-0/blob/master/week-4/basic-math.rb)
+```ruby
+num1=8675309
+num2=16
+
+sum=num2+num1
+difference=num1-num2
+product=num1*num2
+
+quotient=num1.to_f/num2.to_f
+#The below return the integer quotient (e.g. the above result rounded down)
+#quotient=num1/num2
+#quotient=num1.div(num2)
+#quotient=num1.divmod(num2)[0]
+
+#all of the below return the same
+modulus=num1%num2
+modulus=num1.modulo(num2)
+modulus=num1.divmod(num2)[1]
+```
