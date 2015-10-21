@@ -1,17 +1,18 @@
 puts 'The program calculates the number of hours in a year'
-puts 'What is the current year (if you want an average year enter 0)?'
-year = gets.chomp.to_i
-hoursInDay = 24
-daysInYear = 365
-daysInAverageYear = 365.2425
-daysInLeapYear = 366
-hoursInYear = hoursInDay*daysInYear
-hoursinLeapYear = hoursInDay*daysInLeapYear
-hoursinAverageYear = hoursInDay*daysInAverageYear
-if year == 0 then 
-	puts hoursinAverageYear
-elsif (year % 4==0 && (year % 100>0 || year % 400==0)) then
-	puts hoursinLeapYear
-else
-	puts hoursInYear
+puts 'Do you want a leap year?'
+response=gets.chomp
+if response[0].downcase=='y' then
+	daysInYear = 366
+	else
+	puts 'Do you want a solar (average) year?'
+	response=gets.chomp
+	if response[0].downcase=='y' then
+		daysInYear = 365.2524
+		else
+		puts 'Okay, I am using a boring 365 day year'
+		daysInYear = 365
+	end
 end
+hoursInDay = 24
+hoursInYear = hoursInDay*daysInYear
+puts "The number of hours in your selected year is #{hoursInYear}"
