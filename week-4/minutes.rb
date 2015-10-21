@@ -1,22 +1,11 @@
 puts 'The program calculates the number of minutes in a decade'
 puts 'What is the first year of the decade?'
-yearone = gets.chomp.to_i
-minutesInHour = 60
-hoursInDay = 24
-minutesInDay = minutesInHour*hoursInDay
-daysInYear = 365
-daysInAverageYear = 365.2425
-daysInLeapYear = 366
-minutesInYear = minutesInDay*daysInYear
-minutesInLeapYear = minutesInDay*daysInLeapYear
-minutesInAverageYear = minutesInDay*daysInAverageYear
-year = 0
-10.times do |x|
-	year = yearone + x - 1 
-	if (year % 4==0 && (year % 100>0 || year % 400==0)) then
-		minutes += minutesInLeapYear
-	else
-		minutes += minutesInYear
-	end
+year = gets.chomp.to_i
+endYear = year+9
+minutes = 0
+while year<=endYear do
+	minutes += 365*24*60
+	minutes += 24*60 if (year % 4==0 && (year % 100>0 || year % 400==0))
+	year += 1
 end
-puts minutes
+puts "The number of minutes in the decade you selected is #{minutes}"
