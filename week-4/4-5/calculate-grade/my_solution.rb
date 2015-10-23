@@ -46,6 +46,6 @@ def various_get_grade (grade)
 end
 
 # A single expression solution
-def get_grade(grade)
-  ["A","B","C","D","F","A"][[(99-grade)/10,4].min]
+def get_grade(percent)
+  ["A","B","C","D","F","A"][[(99-percent)/10,4].min]
 end
