@@ -4,7 +4,7 @@
 
 
 # Your Solution Below
-def factorial(number)
+def various_factorial(number)
 	return 1 if number <= 1
 	method = 4
 	result = 1
@@ -21,7 +21,16 @@ def factorial(number)
 			number -= 1
 		end
 	when 5
-		for x in 2..number do result *= x end
+		for x in 2..number do result *= x end		
 	end
 	return result
+end
+
+def reduce_factorial(number)
+	(1..[number,1].max).reduce(:*)
+end
+
+# recursive one line factorial
+def factorial(number)
+	return number <= 1 ? 1 : number * factorial(number-1)
 end
