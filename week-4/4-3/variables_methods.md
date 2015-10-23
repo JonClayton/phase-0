@@ -29,7 +29,7 @@ The copying of the rspec files was a bit involved but not particularly confusing
 
 ##Links and code for solutions
 
-[4.3 Variables and Methods](https://github.com/JonClayton/phase-0/blob/master/week-4/variables-methods.rb)
+[4.3 Variables and Methods](https://github.com/JonClayton/phase-0/blob/master/week-4/4-3/variables-methods.rb)
 ```ruby
 puts "What is your first name?"
 first_name = gets.chomp
@@ -47,7 +47,7 @@ end
 puts "I have a suggestion #{name}. Your favorite number should be #{favorite_number+1}. It is bigger and better!"
 ```
 
-[4.3.1 Return a Formatted Address](https://github.com/JonClayton/phase-0/blob/master/week-4/address/my_solution.rb)
+[4.3.1 Return a Formatted Address](https://github.com/JonClayton/phase-0/blob/master/week-4/4-3/address/my_solution.rb)
 ```ruby
 # Format an Address
 
@@ -60,7 +60,7 @@ def make_address(street,city,state,zip)
 end
 ```
 
-[4.3.2 Defining Math Methods](https://github.com/JonClayton/phase-0/blob/master/week-4/math/my_solution.rb)
+[4.3.2 Defining Math Methods](https://github.com/JonClayton/phase-0/blob/master/week-4/4-3/math/my_solution.rb)
 ```ruby
 # Math Methods
 
@@ -85,6 +85,3 @@ def divide(num_1, num_2)
  num_1.to_f / num_2.to_f
 end
 ```
-
-
-
