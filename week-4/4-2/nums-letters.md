@@ -34,20 +34,20 @@ I was very overprepared for my interview so this was very basic. I wonder how co
 
 ##Links to challenge solutions, and since they are short, the solutions themselves:
 
-[4.2.1 Defining Variables](https://github.com/JonClayton/phase-0/blob/master/week-4/defining-variables.rb) 
+[4.2.1 Defining Variables](https://github.com/JonClayton/phase-0/blob/master/week-4/4-2/defining-variables.rb) 
 ```ruby
 first_name="John"
 last_name="Kennedy"
 age=98
 ```
 
-[4.2.2 Simple String](https://github.com/JonClayton/phase-0/blob/master/week-4/simple-string.rb)
+[4.2.2 Simple String](https://github.com/JonClayton/phase-0/blob/master/week-4/4-2/simple-string.rb)
 ```ruby
 old_string="Ruby is cool"
 new_string=old_string.reverse.upcase
 ```
 
-[4.2.3 Basic Math](https://github.com/JonClayton/phase-0/blob/master/week-4/basic-math.rb)
+[4.2.3 Basic Math](https://github.com/JonClayton/phase-0/blob/master/week-4/4-2/basic-math.rb)
 ```ruby
 num1=8675309
 num2=16
