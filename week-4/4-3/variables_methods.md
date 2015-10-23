@@ -47,6 +47,20 @@ end
 puts "I have a suggestion #{name}. Your favorite number should be #{favorite_number+1}. It is bigger and better!"
 ```
 
+[4.3 Define Method](https://github.com/JonClayton/phase-0/blob/master/week-4/4-3/define-method/my_solution.rb)
+```ruby
+# Define an Empty Method
+
+# I worked on this challenge by myself.
+
+
+# Your Solution Below
+def do_something (a,b,c)
+  a^b^c #bet you didn't expect that!
+end
+```
+
+
 [4.3.1 Return a Formatted Address](https://github.com/JonClayton/phase-0/blob/master/week-4/4-3/address/my_solution.rb)
 ```ruby
 # Format an Address
