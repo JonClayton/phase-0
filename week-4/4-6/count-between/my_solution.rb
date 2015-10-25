@@ -15,8 +15,19 @@
 # Your Solution Below
 
 def count_between(list_of_integers, lower_bound, upper_bound)
-#  list_of_integers.count {|x| (x>=lower_bound && x<=upper_bound)}  #Easy one line approach
-  count = 0
-  list_of_integers.each {|element| count+=1 if (element>=lower_bound && element<=upper_bound)}
-  return count
+	method = 3
+	case method
+	when 1
+		list_of_integers.count {|x| (x>=lower_bound && x<=upper_bound)}  #Easy one line approach
+	when 2
+		count = 0
+  		list_of_integers.each {|element| count+=1 if (element>=lower_bound && element<=upper_bound)}
+  		return count
+  	when 3
+  		count = 0
+  		for element in list_of_integers
+  			count+=1 if (element>=lower_bound && element<=upper_bound)
+  		end
+  		return count
+  	end
 end

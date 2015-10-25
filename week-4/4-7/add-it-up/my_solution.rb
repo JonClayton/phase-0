@@ -56,6 +56,11 @@ def sentence_maker(array)
   sentence + "."
   p sentence
 
+Note that you could avoid using any methods other than
+capitalize by using a for word in array loop and using 
+#capitalize at the end since it would only affect the first 
+letter in the string
+
 # 6. sentence_maker refactored solution
 =end
 def sentence_maker(array)
