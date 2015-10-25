@@ -18,7 +18,7 @@ def options_leap_year?(year)
 	    return false
 		when year % 4 > 0
 	    return false
-    end
+        end
     when 2
         return false if year % 4 > 0 || (year % 100 == 0 && year % 400 >0)
     when 3

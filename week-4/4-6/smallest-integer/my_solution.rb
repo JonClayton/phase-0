@@ -12,11 +12,23 @@
 
 # Your Solution Below
 def smallest_integer(list_of_nums)
-# list_of_nums.min #the brutally short way
-# list_of_nums.sort[0] #this would be an easy one line way
-  smallest = list_of_nums[0]
-  list_of_nums.each do |element|
-  	smallest = element if element < smallest
-  end
-  return smallest
+	method = 4
+	case method
+	when 1
+		list_of_nums.min #the brutally short way
+	when 2
+		list_of_nums.sort[0] #this would be an easy one line way
+	when 3 #if each is okay
+		smallest = list_of_nums[0]
+  		list_of_nums.each do |element|
+  			smallest = element if element < smallest
+  		end
+  		return smallest
+  	when 4 # with no methods
+  		smallest = list_of_nums[0]
+  		for element in list_of_nums
+  			smallest = element if element < smallest
+  		end
+  		return smallest	
+  	end
 end
