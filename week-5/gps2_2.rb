@@ -96,10 +96,6 @@ end #to keep formatting but not invoke
 
 # 3. Refactored Solution
 
-def new_list
-  $grocery_list = {}
-end
-
 def add_item(item,quantity)
   update_list(item,quantity)
 end
@@ -108,29 +104,9 @@ def delete_item (item)
   $grocery_list.delete(item)
 end
 
-def update_item(item,quantity)
-  update_list(item,quantity)
-end
-
-def print_list
-  puts_line
-  puts "Here's your current list:"
-  $grocery_list.each {|item, quantity| puts "#{item}: #{quantity}"}
-  puts_line
-end
-
-def print_items
-  puts_line
-  print "Your items are: "
-  puts $grocery_list.keys.join(",")
-end 
-
-def puts_line
-  puts "--------------------------" 
-end  
-
-def update_list (item,quantity)
-  $grocery_list[item] = quantity
+def get_item_change_input(request)
+  print_items
+  get_item_input(request)
 end
 
 def get_item_input(request)
@@ -148,9 +124,29 @@ def get_item_quantity(item)
   return quantity
 end
 
-def get_item_change_input(request)
-  print_items
-  get_item_input(request)
+def new_list
+  $grocery_list = {}
+end
+
+def print_items
+  puts_line
+  print "Your items are: "
+  puts $grocery_list.keys.join(",")
+end 
+
+def print_list
+  puts_line
+  puts "Here's your current list:"
+  $grocery_list.each {|item, quantity| puts "#{item}: #{quantity}"}
+  puts_line
+end
+
+def puts_line
+  puts "--------------------------" 
+end  
+
+def update_list (item,quantity)
+  $grocery_list[item] = quantity
 end
 
 new_list
@@ -179,7 +175,7 @@ until done
   when "u"
     item = get_item_change_input("update")
     quantity = get_item_quantity(item)
-    update_item(item,quantity)
+    update_list(item,quantity)
   when "p"
     print_list
     done = true
