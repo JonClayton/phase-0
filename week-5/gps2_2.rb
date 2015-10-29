@@ -3,7 +3,7 @@ Grocery List GPS Challenge 2.2
 
 I worked on this challenge with: Nicola Beuscher
 
-I spent [2] hours on this challenge.
+I spent [4] hours on this challenge.
 
 0. Pseudocode
 
@@ -96,39 +96,70 @@ end #to keep formatting but not invoke
 
 # 3. Refactored Solution
 
-$grocery_list = {}
-
 def new_list
   $grocery_list = {}
 end
 
-def add_item
-  item = gets.chomp
-  puts "How many?"
-  quantity = gets.chomp
-  $grocery_list[item] = quantity
+def add_item(item,quantity)
+  update_list(item,quantity)
 end
 
 def delete_item (item)
   $grocery_list.delete(item)
 end
 
-def update_item
-  add_item
+def update_item(item,quantity)
+  update_list(item,quantity)
 end
 
 def print_list
-  puts "--------------------------"
+  puts_line
   puts "Here's your current list:"
   $grocery_list.each {|item, quantity| puts "#{item}: #{quantity}"}
-  puts "--------------------------"
+  puts_line
 end
 
-done=false
+def print_items
+  puts_line
+  print "Your items are: "
+  puts $grocery_list.keys.join(",")
+end 
+
+def puts_line
+  puts "--------------------------" 
+end  
+
+def update_list (item,quantity)
+  $grocery_list[item] = quantity
+end
+
+def get_item_input(request)
+  puts "What item do you want to #{request}?"
+  item = gets.chomp
+end
+
+def get_item_quantity(item)
+  quantity = 0
+  while quantity < 1 do
+    puts "How many #{item} would you like?"
+    quantity = gets.chomp.to_i
+    puts "I think you want a positive number" if quantity < 1
+  end
+  return quantity
+end
+
+def get_item_change_input(request)
+  print_items
+  get_item_input(request)
+end
+
+new_list
+item = ""
+done = false
 until done
   print_list
   puts "Do you want to:"
-  puts "New list"
+  puts "Start new list"
   puts "Add an item"
   puts "Delete an item" 
   puts "Update quantity or" 
@@ -136,20 +167,19 @@ until done
   puts "Input the first letter of your choice."
   choice = gets.chomp.downcase[0]
   case choice
-  when "n"
+  when "s"
     new_list
   when "a"
-    puts "What item do you want to add?"
-    add_item
+    item = get_item_input("add")
+    quantity = get_item_quantity(item)
+    update_list(item,quantity)
   when "d"
-    print_list
-    puts "Which item do you want to delete?"
-    item = gets.chomp
+    item = get_item_change_input("delete")
     delete_item(item)
   when "u"
-    print_list
-    puts "Which item do you want to update?"
-    update_item
+    item = get_item_change_input("update")
+    quantity = get_item_quantity(item)
+    update_item(item,quantity)
   when "p"
     print_list
     done = true
