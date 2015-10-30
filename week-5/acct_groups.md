@@ -1,36 +1,21 @@
-=begin
-PSUEDOCODE!!!
+Normally I paste code into one of these documents here, but the code for this exercise is pretty long.  Here is a link to it, and it appears below the reflections.
 
-1. Build container of Cohort member names
-2. Store maximum size of group
-3. DESIGN DECISION: No group will be more than one person larger than any other
-4. Calculate number of groups (members/group size, rounded up)
-5. Build container for groups
-6. Iterate over container, assigning people one at a time to groups
-7. Report groups 
+##What was the most interesting and most difficult part of this challenge?
+The dealing out of the cards for the AG members was pretty slick, and the process for removing a member, figuring out what to do next and doing it was very involved.  I now suspect it would have been easier if the data structure were a hash with name as key and AG number as value, but then we'd have the hassle of counting members of groups to figure out how many in each one.
 
-INITIAL SOLUTION
-=end
-def init_make_teams
-	pool = ['Syema Ailia','Alan Alcesto','Daniel Andersen','James Artz','Darius Atmar','Brian Bensch','Nicola Beuscher','Kris Bies','Logan Bresnahan','William Brinkert','Scott Chou','Bernice Anne W Chua','Abraham Clark','Jon Clayton','Kevin Corso','Jacob Crofts','Amaar Fazlani','Solomon Fernandez','Edward Gemson','Jamar Gibbs','Chris Gomes','Will Granger','Christopher M. Guard','Ryan Ho','Igor Kazimirov','Walter Kerr','Karla King','Becky Lehmann','Malia Lehrer','Carolina Medellin','Timothy Meixell','Chris Miklius','Joshua Monzon','Shea Munion','Bryan Munroe','Trevor Newcomb','Aleksandra Nowak','Fatma Ocal','Van Phan','Luis Fernando Plaz','Natalie Polen','Alicia Quezada','Jessie Richardson','Nimi Samocha','Zach Schatz','Tal Schwartz','Pratik Shah','Josh Shin','Shawn Spears','Sasha Tailor','Nil Thacker','Natasha Thapliyal','Sabrina Unrein','Brian Wagner','Clinton Weber','Gregory Wehmeier','Michael Whelpley','Peter N Wood','Ryan Zell']
-	max_group_size = 5
-	group_count = (pool.size-1) / max_group_size + 1
-	group_array = []
-	group_count.times do 
-		group_array << []
-	end
-	while pool.size > 0
-		group_array.map! {|team| team << pool.pop}
-	end
-	group_array.each_index do |index| 
-		puts "Accountability Group #{index+1}:" 
-		group_array[index].each {|person| puts person}
-		puts "------------------------------"
-	end
-end
-#init_make_teams
+##Do you feel you are improving in your ability to write pseudocode and break the problem down?
+I used psuedocode for the basic structure but all the real work was in the refactoring bucket when I was adding features. Perhaps I should have done some psuedocoding then too! 
 
-# REFACTORING
+##Was your approach for automating this task a good solution? What could have made it even better?
+I'd say the team formation approach was a clear win, and the printing mechanism looks good. The remove_person method is not as clean as I would like and I bet taking another run at it with a different data structure as mentioned above might generate a better result.
+
+##What data structure did you decide to store the accountability groups in and why?
+I used an array because the groups are numbered, so array index was fine.
+
+##What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
+No new methods here, but I did leann how to created an empty array of arrays in one line.
+
+```ruby
 $cohort = ['Syema Ailia','Alan Alcesto','Daniel Andersen','James Artz','Darius Atmar','Brian Bensch','Nicola Beuscher','Kris Bies','Logan Bresnahan','William Brinkert','Scott Chou','Bernice Anne W Chua','Abraham Clark','Jon Clayton','Kevin Corso','Jacob Crofts','Amaar Fazlani','Solomon Fernandez','Edward Gemson','Jamar Gibbs','Chris Gomes','Will Granger','Christopher M. Guard','Ryan Ho','Igor Kazimirov','Walter Kerr','Karla King','Becky Lehmann','Malia Lehrer','Carolina Medellin','Timothy Meixell','Chris Miklius','Joshua Monzon','Shea Munion','Bryan Munroe','Trevor Newcomb','Aleksandra Nowak','Fatma Ocal','Van Phan','Luis Fernando Plaz','Natalie Polen','Alicia Quezada','Jessie Richardson','Nimi Samocha','Zach Schatz','Tal Schwartz','Pratik Shah','Josh Shin','Shawn Spears','Sasha Tailor','Nil Thacker','Natasha Thapliyal','Sabrina Unrein','Brian Wagner','Clinton Weber','Gregory Wehmeier','Michael Whelpley','Peter N Wood','Ryan Zell']
 $ag_cap = 5 #largest size Accountablity Group allowed
 	
@@ -90,34 +75,4 @@ make_groups
 print_groups
 remove_person('Syema Ailia')
 remove_person('Ryan Ho')
-=begin
-remove_person('Shawn Spears')
-remove_person('Aleksandra Nowak')
-remove_person('Igor Kazimirov')
-remove_person('Abraham Clark')
-remove_person('Josh Shin')
-remove_person('Trevor Newcomb')
-remove_person('Bernice Anne W Chua')
-remove_person('Ryan Zell')
-remove_person('Pratik Shah')
-remove_person('Bryan Munroe')
-remove_person('Christopher M. Guard')
-remove_person('Scott Chou')
-=end
-
-=begin
-
-What was the most interesting and most difficult part of this challenge?
-The dealing out of the cards for the AG members was pretty slick, and the process for removing a member, figuring out what to do next and doing it was very involved.  I now suspect it would have been easier if the data structure were a hash with name as key and AG number as value, but then we'd have the hassle of counting members of groups to figure out how many in each one.
-
-Do you feel you are improving in your ability to write pseudocode and break the problem down?
-I used psuedocode for the basic structure but all the real work was in the refactoring bucket when I was adding features. Perhaps I should have done some psuedocoding then too! 
-
-Was your approach for automating this task a good solution? What could have made it even better?
-I'd say the team formation approach was a clear win, and the printing mechanism looks good. The remove_person method is not as clean as I would like and I bet taking another run at it with a different data structure as mentioned above might generate a better result.
-
-What data structure did you decide to store the accountability groups in and why?
-I used an array because the groups are numbered, so array index was fine.
-
-What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
-No new methods here, but I did leann how to created an empty array of arrays in one line.
+```
