@@ -147,11 +147,14 @@ def mode(array)
     array.uniq.each {|element| array.delete_at(array.index(element))} 
   end
   array.sort
-    
+   
   when "recursive"
-    return array.sort if array == array.uniq
-    array.uniq.each {|element| array.delete_at(array.index(element))}
-    mode(array)
+  require 'set'
+  s1 = Set.new array
+  puts s1
+#    return array.sort if array == array.uniq
+ #   array.uniq.each {|element| array.delete_at(array.index(element))}
+  #  mode(array)
     
   when "and finally" # we get down to one line, though I wish the block inside #each was more elegant
     array == array.uniq ? array.sort : array.uniq.each {|element| array.delete_at(array.index(element))} && mode(array)
