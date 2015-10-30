@@ -1,4 +1,4 @@
-Normally I paste code into one of these documents here, but the code for this exercise is pretty long.  Here is a link to it, and it appears below the reflections.
+I'm sorry if you're expecting a hard to read .rb file.  I'm submitting this one instead to improve readability.  Normally I paste code into one of these documents here, but the code for this exercise is pretty long.  Here is a link to it, and the refactored solution appears below the reflections: https://github.com/JonClayton/phase-0/blob/master/week-5/acct_groups.rb
 
 ##What was the most interesting and most difficult part of this challenge?
 The dealing out of the cards for the AG members was pretty slick, and the process for removing a member, figuring out what to do next and doing it was very involved.  I now suspect it would have been easier if the data structure were a hash with name as key and AG number as value, but then we'd have the hassle of counting members of groups to figure out how many in each one.
@@ -69,7 +69,7 @@ def remove_person(name)
 		puts "That Group will continue on as-is."
 	end
 end
-
+#various testing operations
 # $cohort.shuffle!
 make_groups
 print_groups
