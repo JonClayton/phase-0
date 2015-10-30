@@ -2,7 +2,7 @@
 
 # Calculate the mode Pairing Challenge
 
-# I worked on this challenge [by myself, with James Artz
+# I worked on this challenge with James Artz
 
 # I spent 5 hours on this challenge because I spent so much time refactoring
 
@@ -11,7 +11,6 @@
 # is commented.
 
 # 0. Pseudocode
-
 
 ## What is the input?
 
