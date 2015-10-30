@@ -10,7 +10,7 @@ I used psuedocode for the basic structure but all the real work was in the refac
 I'd say the team formation approach was a clear win, and the printing mechanism looks good. The remove_person method is not as clean as I would like and I bet taking another run at it with a different data structure as mentioned above might generate a better result.
 
 ##What data structure did you decide to store the accountability groups in and why?
-I used an array because the groups are numbered, so array index was fine.
+I used an array because the groups are numbered, so array index was fine.  I think a hash with Group name as keys would be OK, but since we wouldn't be using the key names in any meaningful way and we didn't need the default value for new elements, I don't think a hash would have changed our approach very much at all.  Now, a hash with names as keys and group number as values might well have made this easier (much easier to find and delete a member), but perhaps the other functions of the tool were easier with an array than a hash.  I might come back to this to test out a name-keyed array.
 
 ##What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
 No new methods here, but I did leann how to created an empty array of arrays in one line.
