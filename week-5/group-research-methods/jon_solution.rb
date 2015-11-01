@@ -21,7 +21,7 @@ end
 
 # Person 2
 def my_array_modification_method!(source, thing_to_modify)
-	source.each_with_index {|item, i| item.class != String && source[i] += thing_to_modify}
+	source.each_with_index {|item, i| item.is_a?(Integer) && source[i] += thing_to_modify}
 end
 
 def my_hash_modification_method!(source, thing_to_modify)
@@ -66,7 +66,7 @@ end
 
 # Person 5
 def my_array_splitting_method(source)
-  source.partition{|element| element.class != String}
+  source.partition{|element| element.is_a?(Integer)}
 end
 
 def my_hash_splitting_method(source, age)
