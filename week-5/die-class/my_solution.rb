@@ -28,9 +28,7 @@ allow the user to roll the die
 
 class Die_initial
   def initialize(sides)
-  	unless sides.is_a?(Integer) && sides > 0
-  		raise ArgumentError.new("Must be an integer larger than zero")
-  	end
+    raise ArgumentError.new("Number of sides can't be less than 1") unless sides > 0
     @sides = sides
   end
 
@@ -48,10 +46,8 @@ end
 
 class Die
   def initialize(sides)
-  	unless sides.is_a?(Integer) && sides > 0
-  		raise ArgumentError.new("Must be an integer larger than zero")
-  	end
-    @sides = sides
+    raise ArgumentError.new("Number of sides can't be less than 1") unless sides > 0
+    @sides = sidess
   end
 
   def sides
