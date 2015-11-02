@@ -28,7 +28,7 @@ There wasn't much difference. I just needed to add a little bit of logic to calc
 KISS--keep it simple (we'll leave out the end of the acronym)
 
 ##What new methods did you learn when working on this challenge, if any?
-I finally realized I could just use rand(an_integer) instead of Random.rand(a_range).
+I finally realized I could just use 'rand(an_integer)' and adjust down to get an index number instead of 'Random.rand(a_range)'.
 
 ##What concepts about classes were you able to solidify in this challenge?
 I think we are seeing them get more flexible.
