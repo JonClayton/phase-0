@@ -1,3 +1,31 @@
+I'm submitting this via a `.mk` file to make it easier to read.  Hope that's okay.
+
+Here's the [link to the `.rb` version](https://github.com/JonClayton/phase-0/blob/master/week-6/attr/my_solution.rb)
+
+And here is the code written in Release 5
+```ruby
+class NameData
+	attr_reader :name
+	def initialize
+		@name = "Jon"
+	end
+end
+
+class Greetings
+	def initialize
+		@student = NameData.new
+	end
+
+	def hello
+		puts "Hello Student! How wonderful to see you today"
+		puts "But I shouldn't call you Student when I know your name is #{@student.name}"
+	end
+end
+
+greet = Greetings.new
+greet.hello
+```
+
 ##Release 1: Read and Research
 ###What are these methods doing?
 The methods fall in two groups. One set return the value for each of the three instance variables in the class and the other set allow those values to be changed.
