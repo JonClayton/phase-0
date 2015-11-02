@@ -38,7 +38,7 @@ They do so by accepting input from the user via the method call and setting the 
 The output was unchanged.  The code is addressed below.  Just a few lines changed
 
 ###What was replaced?
-The method to return the value of @age was replaced by 'attr_reader :age`
+The method to return the value of `@age` was replaced by 'attr_reader :age`
 
 ###Is this code simpler than the last?
 Yes, and I think I know what's coming next
@@ -48,7 +48,7 @@ Yes, and I think I know what's coming next
 Oooh, I was wrong.  I expected `attr_reader` for the other variables and we got `attr_writer :age` instead!
 
 ###What was replaced?
-The method for changing the value of @age was replaced by another `attr` 
+The method for changing the value of `@age` was replaced by another `attr` 
 
 ###Is this code simpler than the last?
 Yes, and I'm sure I know what's next.
