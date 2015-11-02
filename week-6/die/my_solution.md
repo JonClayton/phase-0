@@ -1,5 +1,5 @@
 Hope you don't mind this is submitte in Markdown rather than directly to the Ruby file.  I this is is much easier to work with.
-Here's the [link](https://github.com/JonClayton/phase-0/blob/master/week-6/die/my_solution.rb)
+Here's the [link.](https://github.com/JonClayton/phase-0/blob/master/week-6/die/my_solution.rb)
 
 And here's the final refactored code:
 ```ruby
