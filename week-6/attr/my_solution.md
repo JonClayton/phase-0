@@ -1,4 +1,4 @@
-I'm submitting this via a `.mk` file to make it easier to read.  Hope that's okay.
+I'm submitting this via a `.md` file to make it easier to read.  Hope that's okay.
 
 Here's the [link to the `.rb` version](https://github.com/JonClayton/phase-0/blob/master/week-6/attr/my_solution.rb)
 
