@@ -70,7 +70,7 @@ def recursive (array)
   end
 end
 
-p recursive(startup_names)
+#p recursive(startup_names)
 
 
 startup_names = ["bit", ["find", "fast", ["optimize", "scope"]]]
@@ -87,8 +87,16 @@ def throughout_nest do_this_to, parent
   end
 end
 
-p throughout_nest add_ly_to, startup_names 
+#p throughout_nest add_ly_to, startup_names 
 
+# At the cost of some readability this can be written in one line as a ternary, 
+# which I think is a pretty clear way to read recursive methods:
+
+def throughout_nest do_this_to, parent
+  parent.map!{|child| child.is_a?(String) ? do_this_to.call(child) : throughout_nest(do_this_to, child)}
+end
+
+p throughout_nest add_ly_to, startup_names 
 
 =begin
 
@@ -103,4 +111,4 @@ You can use any of the methods we use for a flat array, such as `#map` or `#each
 ###Did you find any good new methods to implement or did you re-use one you were already familiar with? What was it and why did you decide that was a good option?	
 We couldn't find any array or enumerable method that would iterate through the nested structure while keeping it intacts.  If we didn't care about returning our result in a similarly nested structure, we could use `#flatten` to get a one dimensional array.
 
-= end
+=end
