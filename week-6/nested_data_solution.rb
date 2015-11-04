@@ -1,3 +1,5 @@
+# I worked on this challenge with Abe Clark.
+# I spent 2 hours on this challenge.
 
 # RELEASE 2: NESTED STRUCTURE GOLF
 # Hole 1
@@ -99,6 +101,6 @@ Values within nested arrays are accessed with a series of index numbers like `ar
 You can use any of the methods we use for a flat array, such as `#map` or `#each`, or the more basic loops on index numbers, but you either need to nest those methods as deeply as the array is nested or learn to write a recursive iteration method that will dig as deep as necessary into the array.
 
 ###Did you find any good new methods to implement or did you re-use one you were already familiar with? What was it and why did you decide that was a good option?	
-We couldn't find any array or enumberable method that would iterate through the nested structure while keeping it intacts.  If we didn't care about returning our result in a similarly nested structure, we could use `#flatten` to get a one dimensional array.
+We couldn't find any array or enumerable method that would iterate through the nested structure while keeping it intacts.  If we didn't care about returning our result in a similarly nested structure, we could use `#flatten` to get a one dimensional array.
 
 = end
