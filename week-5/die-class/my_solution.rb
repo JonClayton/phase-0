@@ -47,7 +47,7 @@ end
 class Die
   def initialize(sides)
     raise ArgumentError.new("Number of sides can't be less than 1") unless sides > 0
-    @sides = sidess
+    @sides = sides
   end
 
   def sides
