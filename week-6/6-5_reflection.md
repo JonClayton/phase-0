@@ -31,14 +31,14 @@ end
 p recursive(startup_names)
 ```
 
-And then to generalize more, I worked out how to use a proc so the recursive method itself is responsible for only the iteration through the next, while it receives an argument that performs the desired operation on each element it encounters while iterating.  This makes it more generalized.  I've also used descriptive variable names to maximize readablity.
+And then to generalize more, I worked out how to use a proc so the recursive method itself is responsible for only the iteration through the next, while it receives an argument that performs the desired operation on each element it encounters while iterating.  This makes it more generalized.  I've also used descriptive variable names to maximize readability.
 ```ruby
 add_ly_to = Proc.new {|string| string += "ly"}
 
 def throughout_nest do_this_to, parent
   parent.map! do |child|
     if child.is_a? String
-      do_this_to.call(child)
+      do_this_to.call child
     else
       throughout_nest do_this_to, child
     end
@@ -47,12 +47,12 @@ end
 
 p throughout_nest add_ly_to, startup_names 
 ```
-If I wasn't maximizing readability this would be a one line method using a ternary, which seems to me the natural way to express a recursive function:
+If I wasn't maximizing readability this would be a one line method using a ternary, which seems to me the natural way to express a recursive function.  In doing this I discovered that the Ruby format option of listing method arguments without parentheses appears to create problems in ternaries--note the parentheses used 
 ```ruby
-
-
-
-
+def throughout_nest do_this_to, parent
+  parent.map!{|child| child.is_a?(String) ? do_this_to.call(child) : throughout_nest(do_this_to, child)}
+end
+```
 ##Reflection
 ###What are some general rules you can apply to nested arrays?
 Values within nested arrays are accessed with a series of index numbers like `array_name[#][#][#][#]`. I find is easiest to figure those numbers out if I start with the last one, meaning the index of the item I want within its subarray and then back my way up the tree.
