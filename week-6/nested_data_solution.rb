@@ -80,14 +80,14 @@ add_ly_to = Proc.new {|string| string += "ly"}
 def throughout_nest do_this_to, parent
   parent.map! do |child|
     if child.is_a? String
-      do_this_to.call(child)
+      do_this_to.call child
     else
       throughout_nest do_this_to, child
     end
   end
 end
 
-#p throughout_nest add_ly_to, startup_names 
+p throughout_nest add_ly_to, startup_names 
 
 # At the cost of some readability this can be written in one line as a ternary, 
 # which I think is a pretty clear way to read recursive methods:
@@ -96,7 +96,7 @@ def throughout_nest do_this_to, parent
   parent.map!{|child| child.is_a?(String) ? do_this_to.call(child) : throughout_nest(do_this_to, child)}
 end
 
-p throughout_nest add_ly_to, startup_names 
+#p throughout_nest add_ly_to, startup_names 
 
 =begin
 
