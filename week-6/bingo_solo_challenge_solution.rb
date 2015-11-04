@@ -2,28 +2,35 @@
   
 A Nested Array to Model a Bingo Board SOLO CHALLENGE
 
-# I spent [#] hours on this challenge.
+# I spent 3 hours on this challenge.
 
 
 # Release 0: Pseudocode
 # Outline:
 
 # Create a method to generate a letter ( b, i, n, g, o) and a number (1-100)
-  #get a random letter by creating range A..Z and picking one at random
+  get a random letter by creating range for these letters and picking one at random
   get a random number in the range 1-100
 
 # Check the called column for the number called.
-  #associate a column with the letter
-  seach that column by iterating through rows at that index
+  associate a column with the letter
+  seacrh that column by
+  iterating through rows and comparing to the element at the row's index=the column
 
 # If the number is in the column, replace with an 'x'
-  #when the number is found, replace with "x"
+  when the number is found, replace with "x"
 
 # Display a column to the console
-  #not sure why I have to do this, but I can!
+  We're never asked to do this in the Releases and I don't see how it would come up in gameplay so I'm not doing it but here's how:
+    select column
+    iterate through rows
+    print (or puts) the element in the selected column for each row.
 
 # Display the board to the console (prettily)
-  #I'm not got at pretty, but we'll print a row at a time 
+  I'm not good at pretty, but we'll print a row at a time with some stuff around it.
+    print header line
+    iterate through rows, printing each one in a pretty way (good spacing) with a vertical line at the start and finish
+    print footer line to close the "box"
 =end
 
 # Initial Solution
