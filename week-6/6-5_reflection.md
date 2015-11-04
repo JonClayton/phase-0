@@ -15,8 +15,10 @@ number_array.map! do |x|
 end
 ```
 
-Two solutions for the bonus. We felt it important to write this recursively so it wasn't sensitive to how many layers of nesting are in the matrix:
+Two solutions for the bonus follow. We felt it important to write this recursively so it wasn't sensitive to how many layers of nesting are in the matrix:
 ```ruby
+startup_names = ["bit", ["find", "fast", ["optimize", "scope"]]]
+
 def recursive (array)
   array.map! do |x|
     if x.is_a? String
@@ -29,10 +31,8 @@ end
 p recursive(startup_names)
 ```
 
-And then to generalize more, I worked out how to use a proc so the recursive method itself is responsible for only the iteration through the next, while it receives an argument that performs the desired operation on each element it encounters while iterating:
+And then to generalize more, I worked out how to use a proc so the recursive method itself is responsible for only the iteration through the next, while it receives an argument that performs the desired operation on each element it encounters while iterating.  This makes it more generalized.  I've also used descriptive variable names to maximize readablity.
 ```ruby
-startup_names = ["bit", ["find", "fast", ["optimize", "scope"]]]
-
 add_ly_to = Proc.new {|string| string += "ly"}
 
 def throughout_nest do_this_to, parent
@@ -47,6 +47,11 @@ end
 
 p throughout_nest add_ly_to, startup_names 
 ```
+If I wasn't maximizing readability this would be a one line method using a ternary, which seems to me the natural way to express a recursive function:
+```ruby
+
+
+
 
 ##Reflection
 ###What are some general rules you can apply to nested arrays?
