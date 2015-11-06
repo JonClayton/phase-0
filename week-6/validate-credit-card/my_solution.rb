@@ -1,7 +1,7 @@
 # Class Warfare, Validate a Credit Card Number
 
 
-# I worked on this challenge with Jacob Croft.
+# I worked on this challenge with Jacob Crofts.
 # I spent 2 hours on this challenge.
 
 # Pseudocode
