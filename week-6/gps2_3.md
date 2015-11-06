@@ -7,6 +7,17 @@ I spent 3 hours on this challenge, 1:45 of it together with Van. <br>
 
 Here's the refactored code:
 ```ruby
+ddef pluralize(number, word)
+  case number
+  when 1
+    return " 1 #{word}"
+  when 0
+    return ""
+  else
+    return " #{number} #{word}s"
+  end
+end
+
 def serving_size_calc(item_to_make, servings_needed)
 
   library = {"cookie" => 1, "cake" =>  5, "pie" => 7}
@@ -30,16 +41,9 @@ def serving_size_calc(item_to_make, servings_needed)
   
   #generate text needed if the main order doesn't cover servings_needed exactly
   if extra_servings_required > 0
-    extra_result = " This will leave you short #{extra_servings_required} servings.  You can either prepare an additional #{item_to_make}, with #{leftover_servings} servings left over, or you could make"
+    extra_result = " This will leave you short#{pluralize(extra_servings_required, 'serving')}. You can either prepare an additional #{item_to_make}, with #{leftover_servings} servings left over, or you could make"
     cake_result = "#{cake_possible ? " a cake" : ""}"
-    case cookies_offered
-      when 0
-      cookie_result = ""
-      when 1
-      cookie_result = " 1 cookie"
-    else 
-      cookie_result = " #{cookies_offered} cookies"
-    end
+    cookie_result = pluralize(cookies_offered,"cookie")
     connector = cake_result == "" || cookie_result == "" ? "" : " and"
     closing_result = " so those people will have something to eat even if it is not the preferred item."
     result = result + extra_result + cake_result + connector + cookie_result + closing_result
