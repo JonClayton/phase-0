@@ -74,7 +74,7 @@ def serving_size_calc(item_to_make, servings_needed)
     else 
       cookie_result = " #{cookies_offered} cookies"
     end
-    connector = cake_result != "" && cookie_result != "" ? " and" : ""
+    connector = cake_result == "" || cookie_result == "" ? "" : " and"
     closing_result = " so those people will have something to eat even if it is not the preferred item."
     result = result + extra_result + cake_result + connector + cookie_result + closing_result
   end
