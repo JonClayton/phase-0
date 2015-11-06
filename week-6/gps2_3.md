@@ -1,9 +1,9 @@
-I'm submitting this in Markdown format to improve readability.  You can find the Ruby file at this [link]()
+I'm submitting this in Markdown format to improve readability.  You can find the Ruby file at this [link](https://github.com/JonClayton/phase-0/blob/master/week-6/gps2_3.rb)
 
-Your Names
-1) Jon Clayton
-2) Van Phan 
-I spent 3 hours on this challenge, 1:45 of it together with Van.
+-Your Names 
+-1) Jon Clayton
+-2) Van Phan 
+-I spent 3 hours on this challenge, 1:45 of it together with Van.
 
 Here's the refactored code:
 ```ruby
