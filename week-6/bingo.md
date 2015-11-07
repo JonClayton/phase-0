@@ -2,7 +2,7 @@ Hope it's okay to submit this as a `.md` file.  I think it's much easier to read
 
 You can see (or better, copy so you can run) the Ruby file at this [link](https://github.com/JonClayton/phase-0/blob/master/week-6/bingo_solo_challenge_solution.rb)
 
-Here's the refactored solution.  It's pretty cool since not only does it set up a random correct board (numbers in the right columns, no numbers repeating), but it plays a game, checking for victory, and shows the initial and final board along with all the moves and celebrations when the player has a particular number and when the player wins the game.
+Here's the refactored solution.  It's pretty cool since not only does it set up a random correct board (numbers in the right columns, no numbers repeating), but it plays a game, checking for victory, and shows the initial and final board along with all the moves and celebrations when the player has a particular number and when the player wins the game.  I've also introduced competition against as many computer players with separate boards as the player would like, and an option to replay the game.
 
 ```ruby
 class BingoBoard
