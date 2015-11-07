@@ -116,13 +116,11 @@ p first_game.display_board
 
 class BingoBoard
 
-  attr_reader :win
-
   def initialize
-    @bingo_board = build_legal_board
+    @players = {}
+    @human = nil
     @bingo = ["B","I","N","G","O"]
     @win = false
-    display_board
   end
 
   def call_letter
@@ -131,7 +129,6 @@ class BingoBoard
   end
 
   def call_number
-#   @number = rand(100) + 1  # changing to make only legal calls
     @number = @column*15 + rand(15) + 1
   end
 
@@ -141,18 +138,20 @@ class BingoBoard
     "#{@letter}-#{@number}"
   end
 
-  def check
-    @bingo_board.each_with_index do |row, row_num|
+  def check (player, board)
+    board.each_with_index do |row, row_num|
       if row[@column] == @number
-        @bingo_board[row_num][@column] = "X"
-        puts "Got that one!"
+        board[row_num][@column] = "X"
+        puts "#{player} got that one!"
+        return
       end
     end
+    check_for_win (board)
   end
 
-  def display_board
+  def display_board (board)
     print_BINGO_line
-    @bingo_board.each do |row|
+    board.each do |row|
       print_v_line
       row.each do |entry|
         case 
@@ -184,45 +183,39 @@ class BingoBoard
     puts "--B--I--N--G--O--"
   end
 
-  def check_for_win
-    check_rows
-    check_columns
-    check_diagonals
-    puts "BINGO I win I win I win!" if win
+  def check_for_win (board)
+    check_rows (board)
+    check_columns (board)
+    check_diagonals (board)
+    puts "BINGO I win I win I win!" if @win
   end
 
-  def check_rows
-    @bingo_board.each do |row|
+  def check_rows (board)
+    board.each do |row|
       @win = true if row == ["X","X","X","X","X"]
     end
   end
 
-  def check_columns
+  def check_columns (board)
     for col in 0..4 do
       five_in_a_row = true
-      @bingo_board.each do |row|
+      board.each do |row|
         five_in_a_row = false if row[col] != "X"
       end
       @win = true if five_in_a_row
     end
   end
 
-  def check_diagonals
+  def check_diagonals (board)
     five_in_a_row = true
     for index in 0..4
-      five_in_a_row = false if @bingo_board[index][index] != "X"
+      five_in_a_row = false if board[index][index] != "X"
     end
     @win = true if five_in_a_row
     for index in 0..4
-      five_in_a_row = false if @bingo_board[4-index][index] != "X"
+      five_in_a_row = false if board[4-index][index] != "X"
     end
     @win = true if five_in_a_row
-  end
-
-  def draw_a_ball
-    p call
-    check
-    check_for_win
   end
 
   def rand_num_not_used_already(board,col)
@@ -244,16 +237,55 @@ class BingoBoard
     board[2][2] = "X"
     return board
   end
+
+  def play_bingo
+    unless @human
+      puts "What is your name?"
+      @human = gets.chomp
+    end
+    @players[@human] = build_legal_board
+    puts "Here is your board:"
+    display_board (@players[@human])
+    puts "How many computer players do you want?"
+    players_to_add = gets.chomp.to_i
+    players_to_add.times {@players["Player " + players_to_add.to_s] = build_legal_board}
+    take_turns until @win 
+  end
+
+  def take_turns
+    print "The call is: "
+    p call
+    @players.each do |player, board| 
+      check(player, board)
+      if @win
+        @winner = player
+        puts "#{@winner} won! Here is the winning board:"
+        display_board (board)
+        if player != @human
+          puts "Sorry you lost.  Here is your board:"
+          display_board(@players[@human])
+        end
+        puts "Would you like to play again?"
+        if gets.chomp.downcase[0] == "y"
+          @players = {}
+          @win = false
+          play_bingo
+          return
+        end
+        puts "Thanks for playing. I hope you enjoyed the game!"
+        return
+      end
+    end
+  end
+
 end
 
 #DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
 
 game = BingoBoard.new
 
-until game.win
-  game.draw_a_ball
-end
-game.display_board
+game.play_bingo
+
 
 
 ##Reflection
