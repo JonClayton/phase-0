@@ -2,7 +2,7 @@
   
 A Nested Array to Model a Bingo Board SOLO CHALLENGE
 
-# I spent 3 hours on this challenge.
+# I spent 5 hours on this challenge.
 
 
 # Release 0: Pseudocode
