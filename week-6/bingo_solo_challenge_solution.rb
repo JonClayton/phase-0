@@ -250,9 +250,10 @@ class BingoBoard
     display_board (@players[@human])
     puts "How many computer players do you want?"
     players_to_add = gets.chomp.to_i
-    while players_to_add > 0
-      @players["Player " + players_to_add.to_s] = build_legal_board
-      players_to_add -= 1
+    player_num = 1
+    while player_num <= players_to_add
+      @players["Player " + player_num.to_s] = build_legal_board
+      player_num += 1
     end
     take_turns until @win 
   end
