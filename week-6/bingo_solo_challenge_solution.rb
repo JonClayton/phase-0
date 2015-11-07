@@ -117,26 +117,27 @@ p first_game.display_board
 class BingoBoard
 
   def initialize
-    @players = {}
     @human = nil
     @bingo = ["B","I","N","G","O"]
-    @win = false
     @who_got_call = []
+    @spaces = [[],[],[],[],[]]
+    for col in (0..4)
+      for row in (0..14)
+        @spaces[col][row] = col * 15 + row + 1
+      end
+    end
   end
 
-  def call_letter
-    @column = rand(5)
-    @letter = @bingo[@column]
-  end
-
-  def call_number
-    @number = @column*15 + rand(15) + 1
+  def refresh
+    @balls = @spaces.flatten.shuffle
+    @win = false
+    @players = {}
   end
 
   def call    
-    call_letter
-    call_number
-    @letter + "-" + @number.to_s
+    @number = @balls.pop
+    @column = (@number-1)/15
+    @bingo[@column] + "-" + @number.to_s
   end
 
   def check (player, board)
@@ -220,27 +221,21 @@ class BingoBoard
     @win = true if five_in_a_row
   end
 
-  def rand_num_not_used_already(board,col)
-    candidate = rand(15)+1+15*col
-    board.flatten.include?(candidate) ? rand_num_not_used_already(board,col) : candidate
-  end
-
   def build_legal_board
+    space_pool = Array.new
     board = [[],[],[],[],[]]
-    row = 0
-    while row < 5
-      col = 0
-      while col < 5
-        board[row][col] = rand_num_not_used_already(board,col)
-        col += 1
+    for col in (0..4)
+      space_pool[col] = @spaces[col].shuffle
+      for row in (0..4)
+        board[row][col] = space_pool[col].pop
       end
-      row += 1
     end
     board[2][2] = "X"
     return board
   end
 
   def play_bingo
+    refresh
     unless @human
       puts "What is your name?"
       @human = gets.chomp
@@ -255,35 +250,28 @@ class BingoBoard
       @players["Player " + player_num.to_s] = build_legal_board
       player_num += 1
     end
-    take_turns until @win 
+    take_turn until @win 
   end
 
-  def take_turns
+  def take_turn
     print call
     print " . . . "
     @players.each do |player, board| 
       check(player, board)
       if @win
-        @winner = player
-        puts "#{@winner} won! Here is the winning board:"
+        puts "#{player} won! Here is the winning board:"
         display_board (board)
         if player != @human
           puts "Sorry you lost.  Here is your board:"
           display_board(@players[@human])
         end
         puts "Would you like to play again?"
-        if gets.chomp.downcase[0] == "y"
-          @players = {}
-          @win = false
-          play_bingo
-          return
-        end
-        puts "Thanks for playing. I hope you enjoyed the game!"
+        gets.chomp.downcase[0] == "y" ? play_bingo : puts("Thanks for playing. I hope you enjoyed the game!")
         return
       end
     end
     if @who_got_call != []
-      print @who_got_call.join(",")
+      print @who_got_call.join(", ")
       puts " got that one!"
     end
   end
@@ -295,8 +283,6 @@ end
 game = BingoBoard.new
 
 game.play_bingo
-
-
 
 ##Reflection
 =begin
