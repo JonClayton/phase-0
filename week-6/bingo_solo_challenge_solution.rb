@@ -286,15 +286,14 @@ game.play_bingo
 
 ##Reflection
 =begin
-
 ###How difficult was pseudocoding this challenge? What do you think of your pseudocoding style?
-My version was basically a series of "write a method to do xxxx".  Most of those methods are so simple that more explanation seems excessive. I'm not sure this is optimal psuedocode, but I feel like it sets up what's needed pretty well.
+My version was basically a series of "write a method to do xxxx".  Most of those methods are so simple that more explanation seemed excessive. I'm not sure this is optimal psuedocode, but I feel like it sets up what's needed pretty well.  Then I added a lot of features in the refactoring process without going back to psuedocode
 
 ###What are the benefits of using a class for this challenge?
 The benefits were substantial because it allowed the "program" to be extremely simple readable language. I also like the class approach because it encourages writing short little methods that help readability.
 
 ###How can you access coordinates in a nested array?
-You use a sequence of index numbers like `array_name[0][2][2]`.  I think that's a pain to write and I might create a `dig` method that allow you to write it as `array.dig([0,2,2])
+You use a sequence of index numbers like `array_name[0][2][2]`.  I think that's a pain to write and I might create a `dig` method that allow you to write it as `array.dig([0,2,2])`
 
 ###What methods did you use to access and modify the array?
 Pretty simple: `#each`, `#each_with_index` and `#flatten`.  Each allows you to be destructive or not pretty easily and affect only what you want to affect.
@@ -306,5 +305,5 @@ I used `#flatten` for the first time here.  It converts a nested array to a one-
 There were a number of variables I wanted to use across methods inside the object, so that I didn't even need to bring them out of the object (example: column number of the most recent draw).  Really the only local variables I used were clearly temporary within their method.
 
 ###What do you feel is most improved in your refactored solution?
-While I was refactoring I realized I had a flaw in my draw and wasn't getting any draws in the 4th ("O") column because I misunderstood how `#rand(num)` works! Embarassing! But I added a LOT of features in refactoring.  I didn't rewrite any of the original code, it was pretty good to start with because I had broken it all down into pretty simple methods.
+While I was refactoring I realized I had a flaw in my draw and wasn't getting any draws in the 4th ("O") column because I misunderstood how `#rand(num)` works! Embarassing! But I added a LOT of features in refactoring to turn it into a playable game.
 =end
