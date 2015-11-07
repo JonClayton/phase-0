@@ -117,21 +117,21 @@ p first_game.display_board
 class BingoBoard
 
   def initialize
-    @human = nil
+    @human_name = nil
     @bingo = ["B","I","N","G","O"]
     @who_got_call = []
-    @spaces = [[],[],[],[],[]]
+    @possible_spaces = [[],[],[],[],[]]
     for col in (0..4)
       for row in (0..14)
-        @spaces[col][row] = col * 15 + row + 1
+        @possible_spaces[col][row] = col * 15 + row + 1
       end
     end
   end
 
   def refresh
-    @balls = @spaces.flatten.shuffle
+    @balls = @possible_spaces.flatten.shuffle
     @win = false
-    @players = {}
+    @boards = {}
   end
 
   def call    
@@ -141,7 +141,7 @@ class BingoBoard
   end
 
   def check (player, board)
-    @who_got_call = [] if player == @human
+    @who_got_call = [] if player == @human_name
     board.each_with_index do |row, row_num|
       if row[@column] == @number
         board[row_num][@column] = "X"
@@ -222,12 +222,12 @@ class BingoBoard
   end
 
   def build_legal_board
-    space_pool = Array.new
+    column_pool = Array.new
     board = [[],[],[],[],[]]
     for col in (0..4)
-      space_pool[col] = @spaces[col].shuffle
+      column_pool[col] = @possible_spaces[col].shuffle
       for row in (0..4)
-        board[row][col] = space_pool[col].pop
+        board[row][col] = column_pool[col].pop
       end
     end
     board[2][2] = "X"
@@ -236,18 +236,18 @@ class BingoBoard
 
   def play_bingo
     refresh
-    unless @human
+    unless @human_name
       puts "What is your name?"
-      @human = gets.chomp
+      @human_name = gets.chomp
     end
-    @players[@human] = build_legal_board
+    @boards[@human_name] = build_legal_board
     puts "Here is your board:"
-    display_board (@players[@human])
+    display_board (@boards[@human_name])
     puts "How many computer players do you want?"
     players_to_add = gets.chomp.to_i
     player_num = 1
     while player_num <= players_to_add
-      @players["Player " + player_num.to_s] = build_legal_board
+      @boards["Player " + player_num.to_s] = build_legal_board
       player_num += 1
     end
     take_turn until @win 
@@ -256,14 +256,14 @@ class BingoBoard
   def take_turn
     print call
     print " . . . "
-    @players.each do |player, board| 
+    @boards.each do |player, board| 
       check(player, board)
       if @win
         puts "#{player} won! Here is the winning board:"
         display_board (board)
-        if player != @human
+        if player != @human_name
           puts "Sorry you lost.  Here is your board:"
-          display_board(@players[@human])
+          display_board(@boards[@human_name])
         end
         puts "Would you like to play again?"
         gets.chomp.downcase[0] == "y" ? play_bingo : puts("Thanks for playing. I hope you enjoyed the game!")
