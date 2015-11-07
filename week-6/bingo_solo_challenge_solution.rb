@@ -121,6 +121,7 @@ class BingoBoard
     @human = nil
     @bingo = ["B","I","N","G","O"]
     @win = false
+    @who_got_call = []
   end
 
   def call_letter
@@ -135,14 +136,15 @@ class BingoBoard
   def call    
     call_letter
     call_number
-    "#{@letter}-#{@number}"
+    @letter + "-" + @number.to_s
   end
 
   def check (player, board)
+    @who_got_call = [] if player == @human
     board.each_with_index do |row, row_num|
       if row[@column] == @number
         board[row_num][@column] = "X"
-        puts "#{player} got that one!"
+        @who_got_call << player
         return
       end
     end
@@ -248,13 +250,16 @@ class BingoBoard
     display_board (@players[@human])
     puts "How many computer players do you want?"
     players_to_add = gets.chomp.to_i
-    players_to_add.times {@players["Player " + players_to_add.to_s] = build_legal_board}
+    while players_to_add > 0
+      @players["Player " + players_to_add.to_s] = build_legal_board
+      players_to_add -= 1
+    end
     take_turns until @win 
   end
 
   def take_turns
-    print "The call is: "
-    p call
+    print call
+    print " . . . "
     @players.each do |player, board| 
       check(player, board)
       if @win
@@ -275,6 +280,10 @@ class BingoBoard
         puts "Thanks for playing. I hope you enjoyed the game!"
         return
       end
+    end
+    if @who_got_call != []
+      print @who_got_call.join(",")
+      puts " got that one!"
     end
   end
 
