@@ -7,42 +7,45 @@ Here's the refactored solution.  It's pretty cool since not only does it set up 
 ```ruby
 class BingoBoard
 
-  attr_reader :win
-
   def initialize
-    @bingo_board = build_legal_board
+    @human_name = nil
     @bingo = ["B","I","N","G","O"]
-    @win = false
-    display_board
-  end
-
-  def call_letter
-    @column = rand(5)
-    @letter = @bingo[@column]
-  end
-
-  def call_number
-    @number = @column*15 + rand(15) + 1
-  end
-
-  def call    
-    call_letter
-    call_number
-    "#{@letter}-#{@number}"
-  end
-
-  def check
-    @bingo_board.each_with_index do |row, row_num|
-      if row[@column] == @number
-        @bingo_board[row_num][@column] = "X"
-        puts "Got that one!"
+    @who_got_call = []
+    @possible_spaces = [[],[],[],[],[]]
+    for col in (0..4)
+      for row in (0..14)
+        @possible_spaces[col][row] = col * 15 + row + 1
       end
     end
   end
 
-  def display_board
+  def refresh
+    @balls = @possible_spaces.flatten.shuffle
+    @win = false
+    @boards = {}
+  end
+
+  def call    
+    @number = @balls.pop
+    @column = (@number-1)/15
+    @bingo[@column] + "-" + @number.to_s
+  end
+
+  def check (player, board)
+    @who_got_call = [] if player == @human_name
+    board.each_with_index do |row, row_num|
+      if row[@column] == @number
+        board[row_num][@column] = "X"
+        @who_got_call << player
+        return
+      end
+    end
+    check_for_win (board)
+  end
+
+  def display_board (board)
     print_BINGO_line
-    @bingo_board.each do |row|
+    board.each do |row|
       print_v_line
       row.each do |entry|
         case 
@@ -74,82 +77,109 @@ class BingoBoard
     puts "--B--I--N--G--O--"
   end
 
-  def check_for_win
-    check_rows
-    check_columns
-    check_diagonals
-    puts "BINGO I win I win I win!" if win
+  def check_for_win (board)
+    check_rows (board)
+    check_columns (board)
+    check_diagonals (board)
+    puts "BINGO I win I win I win!" if @win
   end
 
-  def check_rows
-    @bingo_board.each do |row|
+  def check_rows (board)
+    board.each do |row|
       @win = true if row == ["X","X","X","X","X"]
     end
   end
 
-  def check_columns
+  def check_columns (board)
     for col in 0..4 do
       five_in_a_row = true
-      @bingo_board.each do |row|
+      board.each do |row|
         five_in_a_row = false if row[col] != "X"
       end
       @win = true if five_in_a_row
     end
   end
 
-  def check_diagonals
+  def check_diagonals (board)
     five_in_a_row = true
     for index in 0..4
-      five_in_a_row = false if @bingo_board[index][index] != "X"
+      five_in_a_row = false if board[index][index] != "X"
     end
     @win = true if five_in_a_row
     for index in 0..4
-      five_in_a_row = false if @bingo_board[4-index][index] != "X"
+      five_in_a_row = false if board[4-index][index] != "X"
     end
     @win = true if five_in_a_row
-  end
-
-  def draw_a_ball
-    p call
-    check
-    check_for_win
-  end
-
-  def rand_num_not_used_already(board,col)
-    candidate = rand(15)+1+15*col
-    board.flatten.include?(candidate) ? rand_num_not_used_already(board,col) : candidate
   end
 
   def build_legal_board
+    column_pool = Array.new
     board = [[],[],[],[],[]]
-    row = 0
-    while row < 5
-      col = 0
-      while col < 5
-        board[row][col] = rand_num_not_used_already(board,col)
-        col += 1
+    for col in (0..4)
+      column_pool[col] = @possible_spaces[col].shuffle
+      for row in (0..4)
+        board[row][col] = column_pool[col].pop
       end
-      row += 1
     end
     board[2][2] = "X"
     return board
   end
+
+  def play_bingo
+    refresh
+    unless @human_name
+      puts "What is your name?"
+      @human_name = gets.chomp
+    end
+    @boards[@human_name] = build_legal_board
+    puts "Here is your board:"
+    display_board (@boards[@human_name])
+    puts "How many computer players do you want?"
+    players_to_add = gets.chomp.to_i
+    player_num = 1
+    while player_num <= players_to_add
+      @boards["Player " + player_num.to_s] = build_legal_board
+      player_num += 1
+    end
+    take_turn until @win 
+  end
+
+  def take_turn
+    print call
+    print " . . . "
+    @boards.each do |player, board| 
+      check(player, board)
+      if @win
+        puts "#{player} won! Here is the winning board:"
+        display_board (board)
+        if player != @human_name
+          puts "Sorry you lost.  Here is your board:"
+          display_board(@boards[@human_name])
+        end
+        puts "Would you like to play again?"
+        gets.chomp.downcase[0] == "y" ? play_bingo : puts("Thanks for playing. I hope you enjoyed the game!")
+        return
+      end
+    end
+    if @who_got_call != []
+      print @who_got_call.join(", ")
+      puts " got that one!"
+    end
+  end
+
 end
 
 #DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
 
 game = BingoBoard.new
 
-until game.win
-  game.draw_a_ball
-end
-game.display_board
+game.play_bingo
 ```
 
 ##Reflection
 
 ###How difficult was pseudocoding this challenge? What do you think of your pseudocoding style?
-My version was basically a series of "write a method to do xxxx".  Most of those methods are so simple that more explanation seems excessive. I'm not sure this is optimal psuedocode, but I feel like it sets up what's needed pretty well.
+My version was basically a series of "write a method to do xxxx".  Most of those methods are so simple that more explanation seemed excessive. I'm not sure this is optimal psuedocode, but I feel like it sets up what's needed pretty well.  Then I added a lot of features in the refactoring process without going back to psuedocode
 
 ###What are the benefits of using a class for this challenge?
 The benefits were substantial because it allowed the "program" to be extremely simple readable language. I also like the class approach because it encourages writing short little methods that help readability.
@@ -167,4 +197,4 @@ I used `#flatten` for the first time here.  It converts a nested array to a one-
 There were a number of variables I wanted to use across methods inside the object, so that I didn't even need to bring them out of the object (example: column number of the most recent draw).  Really the only local variables I used were clearly temporary within their method.
 
 ###What do you feel is most improved in your refactored solution?
-While I was refactoring I realized I had a flaw in my draw and wasn't getting any draws in the 4th ("O") column because I misunderstood how `#rand(num)` works! Embarassing! But I added a LOT of features in refactoring.  I didn't rewrite any of the original code, it was pretty good to start with because I had broken it all down into pretty simple methods.
+While I was refactoring I realized I had a flaw in my draw and wasn't getting any draws in the 4th ("O") column because I misunderstood how `#rand(num)` works! Embarassing! But I added a LOT of features in refactoring to turn it into a playable game.
