@@ -15,7 +15,7 @@ number_array.map! do |x|
 end
 ```
 
-Two solutions for the bonus follow. We felt it important to write this recursively so it wasn't sensitive to how many layers of nesting are in the matrix:
+Three solutions for the bonus follow. We felt it important to write this recursively so it wasn't sensitive to how many layers of nesting are in the matrix:
 ```ruby
 startup_names = ["bit", ["find", "fast", ["optimize", "scope"]]]
 
@@ -30,8 +30,7 @@ def recursive (array)
 end
 p recursive(startup_names)
 ```
-
-And then to generalize more, I worked out how to use a proc so the recursive method itself is responsible for only the iteration through the next, while it receives an argument that performs the desired operation on each element it encounters while iterating.  This makes it more generalized.  I've also used descriptive variable names to maximize readability.
+Then to generalize more, I worked out how to use a proc so the recursive method itself is responsible for only the iteration through the next, while it receives an argument that performs the desired operation on each element it encounters while iterating.  This makes it more generalized.  I've also used descriptive variable names to maximize readability.
 ```ruby
 add_ly_to = Proc.new {|string| string += "ly"}
 
@@ -53,6 +52,26 @@ def throughout_nest do_this_to, parent
   parent.map!{|child| child.is_a?(String) ? do_this_to.call(child) : throughout_nest(do_this_to, child)}
 end
 ```
+Finally, Timothy Meixell and I were frustrated by the lack of a built-in method that allows map to penetrate a nested array. So we collaborated on building one and the result also fixes the curious (to me) flaw in `Hash#map` that causes it to return an array when the point of `#map` is staying in the same structure. Here's the result. Note that we don't know all the classes that use the Enumerable module so it's not guaranteed to work for anything other than hashes and arrays. Note also that if the array elements and hash values are not all the same class, your block must deal with that or you'll get an error for unexpected class type. The example below would crash if it encountered a non-numeric element it was supposed to change.
+```ruby
+module Enumerable
+  def map_plus (&block)
+    if self.class == Hash
+      self.each {|key,child| (child.is_a?(Enumerable)) ? self[key]=child.map_plus(&block) : self[key]=yield(child)}
+    else
+      self.map {|child| (child.is_a?(Enumerable)) ? child.map_plus(&block) : yield(child)}
+    end
+  end
+end
+
+array = [0,1,[2,3,[4,5,6]]]
+hash = {name: 15, age: 49, third: {cat: 12, frog: 2, next: {ape: 4, fish: 6}}}
+mixed = [0,1,{name: 15, age: 49, third: {cat: 12, frog: 2, fourth: [2,3,[4,5,6]]}}]
+p array.map_plus {|x| x+2}
+p hash.map_plus {|x| x+2}
+p mixed.map_plus {|x| x+2}
+```
+
 ##Reflection
 ###What are some general rules you can apply to nested arrays?
 Values within nested arrays are accessed with a series of index numbers like `array_name[#][#][#][#]`. I find is easiest to figure those numbers out if I start with the last one, meaning the index of the item I want within its subarray and then back my way up the tree.
