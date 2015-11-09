@@ -98,7 +98,7 @@ end
 
 #p throughout_nest add_ly_to, startup_names 
 
-# With Tim Meixell's collaboration, we've built a new Enumerable method that both 
+# With Timothy Meixell's collaboration, we've built a new Enumerable method that both 
 # creates a nested map and "fixes" #map for hashes so it returns a hash with the same 
 # keys but changed values
 
