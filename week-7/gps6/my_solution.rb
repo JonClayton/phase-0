@@ -59,43 +59,26 @@ class VirusPredictor
 end
 #=======================================================================
 # DRIVER CODE
-<<<<<<< HEAD
-# initialize VirusPredictor
 report = VirusPredictor.new
 report.all_states
 report.a_state("Illinois")
-=======
- # initialize VirusPredictor for each state
-
-
-alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population])
-alabama.virus_effects
-
-jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population])
-jersey.virus_effects
-
-california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population])
-california.virus_effects
-
-alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
-alaska.virus_effects
 
 =begin
->>>>>>> 181b344081624aaad218ec345b8f762afb0cfda3
-#=======================================================================
+
 ## Reflection Section
 ###What are the differences between the two different hash syntaxes shown in the state_data file?
-
+The states name keys are in string form and require the old fashioned hash syntax.  The enclosed hashes have symbols as keys and can use the simplified (symblified?!) syntax for adding values.
 
 ###What does require_relative do? How is it different from require?
-
+It brings in code from another file.  The relative tells it to look in the same directory as the current file's location.
 
 ###What are some ways to iterate through a hash?
-
+`#each` is the easiest, with its variants like `each_with_key`. Other methods like `map` and `inject` also may work since Hash includes the Enumerable module but they may behave in unexpected ways. For example, `Hash#map` returns an array. 
 
 ###When refactoring virus_effects, what stood out to you about the variables, if anything?
-
+They were instance variables and already accessible within the called instance methods, so no need for arguments.
 
 ###What concept did you most solidify in this challenge?
+DRY. Any time you see lines that are essentially identical, look for ways to combine them.
 
 =end
