@@ -59,23 +59,17 @@ end
 
 new_card = CreditCard.new(4408041234567901)
 p new_card.check_card
-=end
-# Refactored Solution
+
+# Refactored Solution--long forrm
 
 class CreditCard
   def initialize (card_number)
     @card = card_number.to_s.split("")
     raise ArgumentError.new("Need a 16 digit number") unless @card.size == 16
   end
-    
-  def calc_start_index
-    @card.size % 2 == 0 ? @start_index = 0 : @start_index = 1
-  end
   
   def double_correct_digits
-    @double = @card.map.with_index do |digit, index|
-      index % 2 == @start_index ? digit.to_i * 2 : digit.to_i
-    end
+    @double = @card.reverse.map.with_index {|digit, index| digit.to_i*(1+index%2)}
   end
   
   def is_sum_div_by_10?
@@ -83,9 +77,22 @@ class CreditCard
   end
   
   def check_card
-    calc_start_index
     double_correct_digits
     is_sum_div_by_10?
+  end  
+end
+
+# And for the ultimate refactoring in terms of brevity, although not clarity:
+=end
+
+class CreditCard
+  def initialize (card_number)
+    @card = card_number.to_s.split("")
+    raise ArgumentError.new("Need a 16 digit number") unless @card.size == 16
+  end
+
+  def check_card
+  @card.reverse.map.with_index{|digit,index| digit.to_i*(1+index%2)}.join("").split("").map{|digit| digit.to_i}.reduce(:+) % 10 == 0
   end  
 end
 
@@ -98,5 +105,5 @@ We got hung up a little while by a very basic error on the @start_index calcualt
 We discoved there is a `#map.with_index`. It is sort of hidden under `#map` in the Array methods, where it is an example for `#map` but not a method of its own. I suppose this is because `#with_index` is actually a separate Enumerable method, which is downright weird since there is an `#each_with_index` method that is explicitly listed in the Enumerable methods. 
 
 ###What concepts or learnings were you able to solidify in this challenge?
-I think we did a very nice job on readability.  We also broke the problem into pieces that resulted in compact class methods and a very clean result. It was the best work I've done with a pair and it was done quickly too.
+I think we did a very nice job on readability.  We also broke the problem into pieces that resulted in compact class methods and a very clean result. It was the best work I've done with a pair and it was done quickly too.  The only post-pairing refactoring I did was to introduce the `#reverse` trick that avoids having to calculate the index number to start with and then the condensing into a single, much less readable, one expression method.
 =end
