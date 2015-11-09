@@ -98,6 +98,27 @@ end
 
 #p throughout_nest add_ly_to, startup_names 
 
+# With Timothy Meixell's collaboration, we've built a new Enumerable method that both 
+# creates a nested map and "fixes" #map for hashes so it returns a hash with the same 
+# keys but changed values
+
+module Enumerable
+  def map_plus (&block)
+    if self.class == Hash
+      self.each {|key,child| (child.is_a?(Enumerable)) ? self[key]=child.map_plus(&block) : self[key]=yield(child)}
+    else
+      self.map {|child| (child.is_a?(Enumerable)) ? child.map_plus(&block) : yield(child)}
+    end
+  end
+end
+
+array = [0,1,[2,3,[4,5,6]]]
+hash = {name: 15, age: 49, third: {cat: 12, frog: 2, next: {ape: 4, fish: 6}}}
+mixed = [0,1,{name: 15, age: 49, third: {cat: 12, frog: 2, fourth: [2,3,[4,5,6]]}}]
+p array.map_plus {|x| x+2}
+p hash.map_plus {|x| x+2}
+p mixed.map_plus {|x| x+2}
+
 =begin
 
 ## Reflection
