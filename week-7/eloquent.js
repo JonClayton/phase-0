@@ -4,12 +4,13 @@
 
 // Program Structure
 // Write your own variable and do something to it.
+var name = "Jon";
+console.log(name);
 
-
+alert("Good Morning!");
 
 
 // Complete one of the exercises: Looping a Triangle, FizzBuzz, or Chess Board
-
 
 
 // Functions
