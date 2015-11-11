@@ -4,7 +4,7 @@
 
 // Program Structure
 // Write your own variable and do something to it.
-var name = “Jon”
+var name = "Jon"
 console.log(name)
 
 // Complete one of the exercises: Looping a Triangle, FizzBuzz, or Chess Board
@@ -61,9 +61,9 @@ function countChar(str, char) {
 
 // Data Structures: Objects and Arrays
 // Create an object called "me" that stores your name, age, 3 favorite foods, and a quirk below.
-var me = {name: "Jon Clayton", age: 50, favorite_foods: ["etouffee", "curry", "fajitas"], quirk: "don't laugh out loud"}
+var me = {name: "Jon Clayton", age: 50, favorite_foods: ["etouffee", "curry", "fajitas"], quirk: "don\'t laugh out loud"}
 
-=begin
+/*
 Introduction
 Did you learn anything new about JavaScript or programming in general?
 I enjoyed reading about the origins of programming and the explication of a crude binary program.  All the history of JavaScript was also new to me (or it was the first time I read this book last summer).
@@ -109,7 +109,7 @@ What other similarities or differences between Ruby and JavaScript did you notic
 JavaScript has the very brief `number++`, which is the same as `number+=1`
 JavaScript’s switch/case syntax is different from Ruby’s case/when syntax because Ruby assumes you want only the block between the valid when condition and the next when condition to execute, so when it reaches the next `when` it skips to the next `end` before executing any more code, while Javascript will ignore the subsequent `case` statements and continue executing code until it encounters a `break` that will cause it to jump to the `end` of the block of code under the switch, `end` in JavaScript being a `}`.  
 JavaScript variable names are connectedCamelCase, while Ruby’s are separate_underline_words
-JavaScript comments are prefaced by // for single lines and fenced by /* and */ for multilines, as opposed to Ruby’s # and =begin, =end syntax.
+JavaScript comments are prefaced by // for single lines and fenced by //* and * / for multilines, as opposed to Ruby’s # and =begin, =end syntax.
 JavaScript if conditions are enclosed by parentheses, and as shown below, one line if statements have the if condition at the front, not following the code block.
 I’m actually going to keep adding things to this list after chapter 2:
 Chapter 3:  Javascript will ignore the argument count mismatch errors we saw in Ruby, ignoring extra arguments and assigning undefined to missing arguments.
@@ -239,4 +239,4 @@ function nth (list, place) {
 }
 
 `deepEqual` wasn't good need to redo later.
-=end
+*/
