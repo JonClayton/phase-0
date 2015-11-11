@@ -15,27 +15,37 @@ var terah = {
 }
 // __________________________________________
 // Write your code below.
+var adam = {};
+adam.name = "Adam";
+terah.spouse = adam;
+terah.weight = 125;
+delete terah.eyeColor;
+adam.spouse = terah;
+terah.children = {};
+carson = {name: "Carson"}
+terah.children.carson = carson;
+carter = {name: "Carter"}
+terah.children.carter = carter;
+colton = {name: "Colton"}
+terah.children.colton = colton;
+adam.children = terah.children;
 
-
-
-
-
-
-
-
-
-
-
-// __________________________________________
+/* __________________________________________
 // Reflection: Use the reflection guidelines
-//
-//
-//
-//
-//
-//
 
+####What tests did you have trouble passing? What did you do to make it pass? Why did that work?
+I had a little trouble with the first add a child test because I didn't get the syntax.
+I was thinking the children were going into an array of objects rather than an object of objects.
+Once I realized each child was an object with a (property) name inside the children object, the 
+syntax fell into place
 
+####How difficult was it to add and delete properties outside of the object itself?
+Super easy.  Was it this easy in Ruby?  I think not...all that attr_accessor stuff
+
+####What did you learn about manipulating objects in this challenge?
+Seems like in JS long chains are going to be objects within objects rather than method after method.
+
+*/
 // __________________________________________
 // Driver Code:  Do not alter code below this line.
 function assert(test, message, test_number) {
