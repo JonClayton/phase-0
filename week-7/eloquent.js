@@ -7,6 +7,13 @@
 var name = "Jon"
 console.log(name)
 
+//Write a short program that asks for a user to input their favorite food. 
+//After they hit return, have the program respond with "Hey! That's my favorite too!" 
+var food = String(prompt("What is your favorite food", "..."));
+alert("Hey! That's my favorite too!");
+var response ="Really! My favorite food is " + food + ", I'm serious";
+alert(response);
+
 // Complete one of the exercises: Looping a Triangle, FizzBuzz, or Chess Board
 var output = ""
 for (var i=1;i<8;i++) {
