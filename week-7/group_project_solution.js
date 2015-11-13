@@ -32,5 +32,8 @@ console.log(Sum(oddList));
 console.log(Sum(evenList));
 console.log(Mean(oddList));
 console.log(Mean(evenList));
-console.log(Median(oddList)); // Yes, I know these medians aren't coming out right. 
-console.log(Median(evenList)); // But we aren't allowed to fix it.  It's in the psuedocode.  Oh well.
+console.log(Median(oddList)); 
+console.log(Median(evenList)); 
+// I know these medians aren't coming out right. 
+// But we aren't allowed to fix it because we have to accept what comes to us.
+// That's half the fun of the telephone game!!!!
