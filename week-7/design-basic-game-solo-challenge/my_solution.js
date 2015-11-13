@@ -72,10 +72,11 @@ var hLine = "-------------------------------------------------------------------
 function SquareLineOutput(row,col,line) {
   if ((row+col)%2==0) return "-------|";
   var space=(8-row)*4+(Math.ceil(col/2))
-  var spaceString = space.toString();
+  var spaceString = " " + space.toString();
+  var owner = board[space].owner
   if (space < 10) spaceString = " "+spaceString;
-  if (line==3) return "     "+spaceString+"|";
-  return "       |";
+  if (line<3) spaceString = owner+owner+owner;
+  return owner+owner+owner+owner+spaceString+"|";
 }
 
 function PrintBoard() {
@@ -103,9 +104,9 @@ function Space (number, owner) {
 }
 function InitializeBoard() {
   for (space =1; space < 33; space++) {
-    var owner = "-"
-    if (space < 13) owner = "B";
-    if (space > 20) owner = "R";
+    var owner = " "
+    if (space < 13) owner = "X";
+    if (space > 20) owner = "O";
     board[space] = new Space (space, owner);
   }
   board[1].upMoves = [5];
@@ -139,7 +140,6 @@ function InitializeBoard() {
 
 InitializeBoard();
 PrintBoard();
-console.log(board);
 
 
 
