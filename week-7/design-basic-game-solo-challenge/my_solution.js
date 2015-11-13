@@ -101,6 +101,8 @@ function Space (number, owner) {
   this.owner = owner;
   this.upMoves = [];
   this.downMoves = [];
+  this.upJumps = [];
+  this.downJumps = [];
 }
 function InitializeBoard() {
   for (space =1; space < 33; space++) {
@@ -113,7 +115,7 @@ function InitializeBoard() {
   board[2].upMoves = [5,6];
   board[3].upMoves = [6,7];
   board[4].upMoves = [7,8];
-  board[5].upMoves = [9,10];
+  board[5].upMoves = [10,9];
   board[6].upMoves = [10,11];
   board[7].upMoves = [11,12];
   board[8].upMoves = [12];
@@ -121,7 +123,7 @@ function InitializeBoard() {
     board[space].upMoves[0] = board[space-8].upMoves[0]+8;
     if (board[space-8].upMoves[1]>0) board[space].upMoves[1] = board[space-8].upMoves[1]+8;
   }
-  board[5].downMoves = [1,2];
+  board[5].downMoves = [2,1];
   board[6].downMoves = [2,3];
   board[7].downMoves = [3,4];  
   board[8].downMoves = [4];  
@@ -133,23 +135,63 @@ function InitializeBoard() {
     board[space].downMoves[0] = board[space-8].downMoves[0]+8;
     if (board[space-8].downMoves[1]>0) board[space].downMoves[1] = board[space-8].downMoves[1]+8;
   }
+  board[1].upJumps = [10];
+  board[2].upJumps = [9,11];
+  board[3].upJumps = [10,12];
+  board[4].upJumps = [11];
+  board[5].upJumps = [14];
+  board[6].upJumps = [13,15];
+  board[7].upJumps = [14,16];
+  board[8].upJumps = [15];
+  for (var space = 9; space < 25; space++) {
+    board[space].upJumps[0] = board[space-8].upJumps[0]+8;
+    if (board[space-8].upJumps[1]>0) board[space].upJumps[1] = board[space-8].upJumps[1]+8;
+  }
+  board[13].downJumps = [6];
+  board[14].downJumps = [5,7];
+  board[15].downJumps = [6,8];  
+  board[16].downJumps = [7];  
+  board[9].downJumps = [2];  
+  board[10].downJumps = [1,3];
+  board[11].downJumps = [2,4];  
+  board[12].downJumps = [3];  
+  for (var space = 17; space < 33; space++) {
+    board[space].downJumps[0] = board[space-8].downJumps[0]+8;
+    if (board[space-8].downJumps[1]>0) board[space].downJumps[1] = board[space-8].downJumps[1]+8;
+  }
+}
+
+function MoveValidator(start,finish) {
+  if (board[start].owner == " ") return [false, "There is no checker on that space."];
+  if (board[finish].owner != " ") return [false, "The target space is occupied."];
+  var validMove = false;
+  if (board[start].owner == "X") {
+    board[start].upMoves.forEach(function (space) {if (space == finish) validMove=[true, "move"]});
+  }
+  if (board[start].owner == "O") {
+    board[start].downMoves.forEach(function (space) {if (space == finish) validMove=[true, "move"]});
+  }
+  if (board[start].owner == "X") {
+    board[start].upJumps.forEach(function (space, index) {if (space == finish) validMove=[true, board[start].upMoves[index]]});
+  }
+  if (board[start].owner == "O") {
+    board[start].downJumps.forEach(function (space, index) {if (space == finish) validMove=[true,board[start].downMoves[index]]});
+  }
+  if (!validMove) return [false, "That checker cannot move there."];
+  return validMove;
 }
 
 function Move(start, finish) {
-  if (board[start].owner == " ") return "There is no checker on that space.";
-  if (board[finish].owner != " ") return "The target space is occupied.";
-  var validMove = false;
-  if (board[start].owner = "X") {
-    board[start].upMoves.forEach(function (space) {if (space == finish) validMove=true});
+  var validity = MoveValidator(start,finish)
+  if (!validity[0]) {
+    console.log(validity[1]);
+    return;
   }
-  if (board[start].owner = "O") {
-    board[start].downMoves.forEach(function (space) {if (space == finish) validMove=true});
-  }
-  if (!validMove) return "That checker cannot move there."
   board[finish].owner = board[start].owner;
   board[start].owner = " ";
+  if (!isNaN(validity[1])) board[validity[1]].owner=" ";
   PrintBoard();
-  return "Move completed"
+  console.log("Move completed");
 }
 
 
@@ -157,8 +199,15 @@ function Move(start, finish) {
 //test code
 
 InitializeBoard();
-PrintBoard();
-console.log(Move(21,13));
+Move(13,17);
+Move(9,19);
+Move(9,21);
+Move(10,14);
+Move(9,13);
+Move(22,18);
+Move(13,22);
+Move(14,10);
+Move(27,18);
 
 
 
