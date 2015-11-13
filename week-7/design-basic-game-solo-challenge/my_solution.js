@@ -163,6 +163,27 @@ function InitializeBoard() {
   }
 }
 
+function UpdateBoardHTML() {
+  board.forEach (function (space, index) {
+    var color = false
+    if (space.owner == "X") color = "red";
+    if (space.owner == "O") color = "black";
+    var square = document.getElementById(space.name);
+    if (color) console.log(square.style.background = color);
+    else console.log(square.style.background = "");
+    if (space.king) {
+      console.log(square.style.height = "4em")
+      console.log(square.style.width = "4em")
+      console.log(square.style.border = "0.25em solid gold")
+    }
+    else {
+      console.log(square.style.height = "4.5em")
+      console.log(square.style.width = "4.5em")
+      console.log(square.style.border = "0em solid black")
+    }
+  })
+}
+
 function MoveValidator(start,finish) {
   if (board[start].owner == " ") return [false, "There is no checker on that space."];
   if (board[finish].owner != " ") return [false, "The target space is occupied."];
@@ -216,6 +237,7 @@ function Move(start, finish) {
   }
   KingMe(finish);
   PrintBoard();
+  UpdateBoardHTML();
   console.log("Move completed", start, " to ", finish);
   WinCheck()
 }
@@ -225,6 +247,9 @@ function Move(start, finish) {
 //test code
 
 InitializeBoard();
+UpdateBoardHTML();
+
+
 Move(13,17);
 Move(9,19);
 Move(9,21);
