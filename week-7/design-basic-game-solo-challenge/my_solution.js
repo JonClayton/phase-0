@@ -52,6 +52,18 @@ build function to ask for and implement move for each player
   - click entry to move and destination
   - automatic analysis of which pieces can move and when clicked, where they can move to
   - display available moves by flashing piece, and destinations when piece is clicked
+  - AI so you can play against the computer
+    - initially, random choice among available moves
+    - improve AI with following rules
+    - avoid moving last row
+    - get kinged when possible
+    - take jumps when possible
+    - avoid moving out of unjumpable positions
+    - avoid moving into jumpable positions
+    - develop deeper analysis of position
+      -  recursive evaluation of future moves?
+      -  method to recognize better positions?
+      -  other ways to assess value of moves that I haven't thought of yet.
 
 // Initial Code
 
