@@ -66,8 +66,34 @@ build function to ask for and implement move for each player
       -  other ways to assess value of moves that I haven't thought of yet.
 
 // Initial Code
+*/
+var hLine = "-------------------------------------------------------------------";
 
+function SquareLineOutput(row,col,line) {
+  if ((row+col)%2==0) return "-------|";
+  var space=(8-row)*4+(Math.ceil(col/2))
+  var spaceString = space.toString();
+  if (space < 10) spaceString = " "+spaceString;
+  if (line==3) return "     "+spaceString+"|";
+  return "       |";
+}
 
+function PrintBoard() {
+  console.log(hLine);
+  for(var row = 1; row < 9; row++) {
+    for (var line = 1; line < 4; line++) {
+      var lineString = ("||");
+      for (var col = 1; col < 9; col++) {
+        lineString += SquareLineOutput(row,col,line); //add contents of line within square
+      }
+      lineString += ("|");
+      console.log(lineString);
+    }
+    console.log(hLine);
+  }
+}
+//test code
+PrintBoard();
 
 
 
