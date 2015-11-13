@@ -135,12 +135,30 @@ function InitializeBoard() {
   }
 }
 
+function Move(start, finish) {
+  if (board[start].owner == " ") return "There is no checker on that space.";
+  if (board[finish].owner != " ") return "The target space is occupied.";
+  var validMove = false;
+  if (board[start].owner = "X") {
+    board[start].upMoves.forEach(function (space) {if (space == finish) validMove=true});
+  }
+  if (board[start].owner = "O") {
+    board[start].downMoves.forEach(function (space) {if (space == finish) validMove=true});
+  }
+  if (!validMove) return "That checker cannot move there."
+  board[finish].owner = board[start].owner;
+  board[start].owner = " ";
+  PrintBoard();
+  return "Move completed"
+}
+
+
 
 //test code
 
 InitializeBoard();
 PrintBoard();
-
+console.log(Move(21,13));
 
 
 
