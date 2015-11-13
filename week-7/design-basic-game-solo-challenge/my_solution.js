@@ -92,8 +92,54 @@ function PrintBoard() {
     console.log(hLine);
   }
 }
+
+var board = []
+
+function Space (number, owner) {
+  this.name = "space" + number.toString();
+  this.owner = owner;
+  this.upMoves = [];
+  this.downMoves = [];
+}
+function InitializeBoard() {
+  for (space =1; space < 33; space++) {
+    var owner = "-"
+    if (space < 13) owner = "B";
+    if (space > 20) owner = "R";
+    board[space] = new Space (space, owner);
+  }
+  board[1].upMoves = [5];
+  board[2].upMoves = [5,6];
+  board[3].upMoves = [6,7];
+  board[4].upMoves = [7,8];
+  board[5].upMoves = [9,10];
+  board[6].upMoves = [10,11];
+  board[7].upMoves = [11,12];
+  board[8].upMoves = [12];
+  for (var space = 9; space < 29; space++) {
+    board[space].upMoves[0] = board[space-8].upMoves[0]+8;
+    if (board[space-8].upMoves[1]>0) board[space].upMoves[1] = board[space-8].upMoves[1]+8;
+  }
+  board[5].downMoves = [1,2];
+  board[6].downMoves = [2,3];
+  board[7].downMoves = [3,4];  
+  board[8].downMoves = [4];  
+  board[9].downMoves = [5];  
+  board[10].downMoves = [5,6];
+  board[11].downMoves = [6,7];  
+  board[12].downMoves = [7,8];  
+  for (var space = 13; space < 33; space++) {
+    board[space].downMoves[0] = board[space-8].downMoves[0]+8;
+    if (board[space-8].downMoves[1]>0) board[space].downMoves[1] = board[space-8].downMoves[1]+8;
+  }
+}
+
+
 //test code
+
+InitializeBoard();
 PrintBoard();
+console.log(board);
 
 
 
