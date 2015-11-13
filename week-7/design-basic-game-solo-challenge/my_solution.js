@@ -76,6 +76,7 @@ function SquareLineOutput(row,col,line) {
   var owner = board[space].owner
   if (space < 10) spaceString = " "+spaceString;
   if (line<3) spaceString = owner+owner+owner;
+  if (line==2 && board[space].king) return "  King |";
   return owner+owner+owner+owner+spaceString+"|";
 }
 
@@ -103,6 +104,7 @@ function Space (number, owner) {
   this.downMoves = [];
   this.upJumps = [];
   this.downJumps = [];
+  this.king = false;
 }
 function InitializeBoard() {
   for (space =1; space < 33; space++) {
@@ -165,21 +167,38 @@ function MoveValidator(start,finish) {
   if (board[start].owner == " ") return [false, "There is no checker on that space."];
   if (board[finish].owner != " ") return [false, "The target space is occupied."];
   var validMove = false;
-  if (board[start].owner == "X") {
+  if (board[start].owner == "X" || board[start].king) {
     board[start].upMoves.forEach(function (space) {if (space == finish) validMove=[true, "move"]});
+    board[start].upJumps.forEach(function (space, index) {
+      if (space == finish && board[board[start].upMoves[index]].owner!=" " && board[board[start].upMoves[index]].owner!=board[start].owner) validMove=[true, board[start].upMoves[index]]});
   }
-  if (board[start].owner == "O") {
+  if (board[start].owner == "O" || board[start].king) {
     board[start].downMoves.forEach(function (space) {if (space == finish) validMove=[true, "move"]});
-  }
-  if (board[start].owner == "X") {
-    board[start].upJumps.forEach(function (space, index) {if (space == finish) validMove=[true, board[start].upMoves[index]]});
-  }
-  if (board[start].owner == "O") {
-    board[start].downJumps.forEach(function (space, index) {if (space == finish) validMove=[true,board[start].downMoves[index]]});
+    board[start].downJumps.forEach(function (space, index) {
+      if (space == finish && board[board[start].downMoves[index]].owner!=" " && board[board[start].downMoves[index]].owner!=board[start].owner) validMove=[true,board[start].downMoves[index]]});
   }
   if (!validMove) return [false, "That checker cannot move there."];
   return validMove;
 }
+
+function KingMe (space) {
+  if (space < 5 && board[space].owner == "O") board[space].king = true;
+  if (space >27 && board[space].owner == "X") board[space].king = true;
+}
+
+function WinCheck() {
+  var winX = true;
+  var winO = true;
+  board.forEach(function(square) {
+    if (square.owner == "X") winO = false;
+    if (square.owner == "O") winX = false;
+    if (!winX && !winO) return false
+})
+  if (winX) console.log("X has won the game!!!");
+  if (winO) console.log("O has won the game!!!");
+  return true
+}
+
 
 function Move(start, finish) {
   var validity = MoveValidator(start,finish)
@@ -188,10 +207,17 @@ function Move(start, finish) {
     return;
   }
   board[finish].owner = board[start].owner;
+  board[finish].king = board[start].king;
   board[start].owner = " ";
-  if (!isNaN(validity[1])) board[validity[1]].owner=" ";
+  board[start].king = false;
+  if (!isNaN(validity[1])) {
+    board[validity[1]].owner=" ";
+    board[validity[1]].king=false;
+  }
+  KingMe(finish);
   PrintBoard();
-  console.log("Move completed");
+  console.log("Move completed", start, " to ", finish);
+  WinCheck()
 }
 
 
@@ -206,9 +232,30 @@ Move(10,14);
 Move(9,13);
 Move(22,18);
 Move(13,22);
-Move(14,10);
 Move(27,18);
-
+Move(21,17);
+Move(30,27);
+Move(14,21);
+Move(21,30);
+Move(23,19);
+Move(30,23);
+Move(23,14);
+Move(17,13);
+Move(13,10);
+Move(6,13);
+Move(29,26);
+Move(25,21);
+Move(21,18);
+Move(14,21);
+Move(21,30);
+Move(31,27);
+Move(24,20);
+Move(11,15);
+Move(15,24);
+Move(24,31);
+Move(30,23);
+Move(32,28);
+Move(23,32);
 
 
 // Refactored Code
