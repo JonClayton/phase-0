@@ -194,3 +194,16 @@ function nth (list, place) {
 }
 ```
 `deepEqual` wasn't good need to redo later.
+
+###Reflections
+####What are the biggest similarities and differences between JavaScript and Ruby?
+
+It's nice that the flow control principles and terminology are pretty much the same and the operators and comparisons are almost identical.  There are lots of syntax differences and Ruby has many more built-in methods that make programming easier.  I've also already noticed that JS is required to work in many environments that have variations in them, big and small.  An example is `alert` not working in node on our command line.
+
+####Was some of your Ruby knowledge solidified by learning another language? If so, which concepts?
+
+Every time you puzzle out difficult flow control questions it helps in any language. Also Eloquent Javascript is masterfully written and challenges are very good (especially recursive ones).
+
+####How do you feel about diving into JavaScript after reading these chapters?
+
+Let's roll!
