@@ -1,4 +1,4 @@
-I'm using Markdown for this submission to make it easier to read.  The `tally_votes.js` file is [here]( ).
+I'm using Markdown for this submission to make it easier to read.  The `tally_votes.js` file is [here](https://github.com/JonClayton/phase-0/blob/master/week-8/tally_votes.js).
 
 Here is our code.  
 ```ruby
