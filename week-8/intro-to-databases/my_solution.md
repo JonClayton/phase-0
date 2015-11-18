@@ -19,8 +19,7 @@ Paste the correct SQL queries for each of the following:
 10. Select all of the region names and the state names in ascending order by regional id: SELECT region_name, state_name FROM states JOIN regions ON states.region_id=regions.id ORDER BY region_id;
 
 ## `persons` and `outfits` Schema
-<!-- Include a link to your schema design here -->
-schema.png
+![Here's my schema](https://github.com/JonClayton/phase-0/blob/master/week-8/intro-to-databases/Schema.png "Jon's first schema")
 
 ## Reflection
 ####What are databases for?
