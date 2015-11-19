@@ -1,4 +1,4 @@
-This is in Markdown so it can be read more easily.  If you'd like to see the code it is [here](https://github.com/JonClayton/phase-0/blob/master/week-8/ruby-review/assert.rb).
+This is in Markdown so it can be read more easily.  If you'd like to see the `.rb`version with all commentary it is [here](https://github.com/JonClayton/phase-0/blob/master/week-8/ruby-review/assert.rb).
 
 I did the Assert exercise, with the bingo_2 exercise as the background for using the assert technique.  It wasn't a big deal since I had done the "win checking" in my original bingo solution.  Here's the code.  I've compressed some lines to make it a little less long.
 ```ruby
