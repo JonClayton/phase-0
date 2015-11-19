@@ -1,3 +1,10 @@
+###One-to-one relationship
+![Here's my schema](https://github.com/JonClayton/phase-0/blob/master/week-8/8-5/imgs/One-to-one.png "Jon's 1-to-1 schema")
+This is a one-to-one relationship if we assume the legal regime does not permit polygamy or polyandry.  One might want to hold it in two tables so there aren't lots of null values in the table for people without spouses.
+
+###Grocery list
+![Here's my schema](https://github.com/JonClayton/phase-0/blob/master/week-8/8-5/imgs/Grocery_lists.png "Jon's grocery list schema")
+
 ###Reflection
 ####What is a one-to-one database?
 Honestly a one-to-one database is when a single table is split into two tables, since they can be connected by the same primary key, since each line item is connected to only one (or zero!) on the other table.
