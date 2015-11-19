@@ -1,15 +1,11 @@
 /*
 Gradebook from Names and Scores
-
-I worked on this challenge [by myself, with:]
+I worked on this challenge with: Jessica Richardson/Jon Clayton
 This challenge took me [#] hours.
-
 You will work with the following two variables.  The first, students, holds the names of four students.
 The second, scores, holds groups of test scores.  The relative positions of elements within the two
 variables match (i.e., 'Joseph' is the first element in students; his scores are the first value in scores.).
-
 Do not alter the students and scores code.
-
 */
 
 var students = ["Joseph", "Susan", "William", "Elizabeth"]
@@ -26,38 +22,64 @@ var scores = [ [80, 70, 70, 100],
 
 // __________________________________________
 // Write your code below.
+/*
+var gradebook = {};
+gradebook.Joseph = {};
+gradebook.Susan = {};
+gradebook.William = {};
+gradebook.Elizabeth = {};
+
+gradebook.Joseph = {testScores: scores[0]};
+gradebook.Susan = {testScores: scores[1]};
+gradebook.William = {testScores: scores[2]};
+gradebook.Elizabeth = {testScores: scores[3]};
 
 
+gradebook.addScore = function(name,score){
+  gradebook[name].testScores.push(score);
+}
+
+gradebook.getAverage = function(name){return average(gradebook[name].testScores)};
+
+function average(array) {
+  var sum = array.reduce (function (x, y) {return x + y;}, 0);
+  return sum/array.length;
+}
+*/
 
 
-
-
+//  gradebook[name].testScores.reduce(function(x, y) { return x + y;}, 0);
 
 
 // __________________________________________
 // Refactored Solution
 
 
+var gradebook = {
+  addScore: function(name, score) {this[name].testScores.push(score)},
+  getAverage: function(name) {return average(this[name].testScores)}
+}
+
+students.forEach(function(student){gradebook[student] = {testScores: scores[students.indexOf(student)]}});
+
+function average(array) {
+  return array.reduce (function (x, y) {return x + y;}, 0)/array.length;
+}
+
+/* __________________________________________
+### Reflect
+####What did you learn about adding functions to objects?
 
 
+####How did you iterate over nested arrays in JavaScript?
 
 
-
-
-// __________________________________________
-// Reflect
-
-
-
-
-
-
-
+####Were there any new methods you were able to incorporate? If so, what were they and how did they work?
 
 
 // __________________________________________
 // Test Code:  Do not alter code below this line.
-
+*/
 
 function assert(test, message, test_number) {
   if (!test) {

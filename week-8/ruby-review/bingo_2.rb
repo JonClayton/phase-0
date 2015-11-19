@@ -139,5 +139,11 @@ samples.each do |board|
 	assert {game.check_for_win(board)}
 end
 
+=begin
+### Reflection
+####What concepts did you review or learn in this challenge?
+I had already done the "check for win" in the original bingo challenge, but this incorporates the Assert challenge too.
 
-# Reflection
+####What is still confusing to you about Ruby?
+####What are you going to study to get more prepared for Phase 1?
+=end
