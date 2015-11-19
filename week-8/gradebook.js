@@ -47,11 +47,12 @@ function average(array) {
 
 var gradebook = {
   addScore: function(name, score) {this[name].testScores.push(score)},
-  getAverage: function(name) {return average(this[name].testScores)}
+  getAverage: function(name) {return this[name].testScores.reduce( (x, y) => x + y)/this[name].testScores.length}
 }
 
 students.forEach(function(student){gradebook[student] = {testScores: scores[students.indexOf(student)]}});
 
+//  Average function only needs to be here to pass tests 7 and 8.  We don't need it or use it otherwise.
 function average(array) {
   return array.reduce( (x, y) => x + y)/array.length;
 }
