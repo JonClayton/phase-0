@@ -54,7 +54,6 @@ function average(array) {
 // __________________________________________
 // Refactored Solution
 
-
 var gradebook = {
   addScore: function(name, score) {this[name].testScores.push(score)},
   getAverage: function(name) {return average(this[name].testScores)}
@@ -63,19 +62,19 @@ var gradebook = {
 students.forEach(function(student){gradebook[student] = {testScores: scores[students.indexOf(student)]}});
 
 function average(array) {
-  return array.reduce (function (x, y) {return x + y;}, 0)/array.length;
+  return array.reduce( (x, y) => x + y)/array.length;
 }
 
 /* __________________________________________
 ### Reflect
 ####What did you learn about adding functions to objects?
-
+I saw how to do it externally, and then in the refactor figured out how to do it internally, letting me replace the object name with "this".
 
 ####How did you iterate over nested arrays in JavaScript?
-
+In this case I used `#forEach` and then something a bit messy to get an index number to pull from a different array at the same index. I could also have used a for loop with an explicit index number but that seemed even a bit less elegant.
 
 ####Were there any new methods you were able to incorporate? If so, what were they and how did they work?
-
+I learned a trick, using `=>` to get rid of the `function`, `return` and {} in the original way I used reduce.  Much shorter syntax!  Thanks Dan Anderson! 
 
 // __________________________________________
 // Test Code:  Do not alter code below this line.
