@@ -2,6 +2,9 @@ I'm doing this in Markdown to improve readability.  The complete `.js` file can 
 
 Here's the refactored code:
 ```ruby
+var students = ["Joseph", "Susan", "William", "Elizabeth"]
+var scores = [ [80, 70, 70, 100], [85, 80, 90, 90], [75, 70, 80, 75], [100, 90, 95, 85] ]
+
 var gradebook = {
   addScore: function(name, score) {this[name].testScores.push(score)},
   getAverage: function(name) {return this[name].testScores.reduce( (x, y) => x + y)/this[name].testScores.length}
