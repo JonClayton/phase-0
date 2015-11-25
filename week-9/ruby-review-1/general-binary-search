@@ -1,0 +1,168 @@
+#Basic pick a number game
+def midpoint_of(range)
+  (range.begin + range.end)/2.to_int
+end
+
+def pick_a_number_original(number, top)
+  bottom = 1
+  range = (bottom..top)
+  until number == midpoint_of(range) do
+    if number < midpoint_of(range)
+      top = midpoint_of(range) - 1
+    else bottom = midpoint_of(range) + 1
+    end
+    range = (bottom..top)
+  end
+  return midpoint_of range
+end
+
+p pick_a_number_original(43, 100)
+
+#Add comparison method and less than method
+def midpoint_of(range)
+  (range.begin + range.end)/2.to_int
+end
+
+def target_reached (number, range)
+  number == midpoint_of(range)
+end
+
+def over_target (number, range)
+  number < midpoint_of(range)
+end
+
+def pick_a_number(number, top)
+  bottom = 1
+  range = (bottom..top)
+  until target_reached(number, range) do
+    if over_target(number, range) 
+      top = midpoint_of(range) - 1 
+    else bottom = midpoint_of(range) + 1
+    end
+    range = (bottom..top)
+  end
+  return midpoint_of range
+end
+
+p pick_a_number(43, 100)
+
+#Convert to our question
+class Student
+  attr_accessor :scores, :first_name
+
+  def initialize(student_first_name,scores_array)   #Use named arguments!
+    @first_name = student_first_name
+    @scores = scores_array
+  end
+  
+  def average
+    @average = @scores.reduce(:+)/@scores.size
+  end
+  
+  def letter_grade
+    letters = ["A","B","C","D","F"]
+    @grade = letters[[[9-(@average/10).to_int,0].max,4].min]
+  end
+  
+end
+
+alex = Student.new("Alex", [100,100,100,0,100])
+betty = Student.new("Betty", [100,100,100,80,100])
+carl = Student.new("Carl", [100,0,100,65,100])
+david = Student.new("David", [90,70,70,72,65])
+ellie = Student.new("Ellie", [50,40,30,-13,100])
+
+
+students = [alex,betty,carl,david,ellie]
+
+$students = students #need this global to access in all functions
+
+def midpoint_of(range)
+  (range.begin + range.end)/2.to_int
+end
+
+def target_reached (name, range)
+  name == $students[midpoint_of(range)].first_name
+end
+
+def over_target (name, range)
+  name < $students[midpoint_of(range)].first_name
+end
+
+def binomial_search_original(name)
+  bottom = 0
+  top = $students.size-1
+  range = (bottom..top)
+  until target_reached(name, range) do
+    if over_target(name, range) 
+      top = midpoint_of(range) - 1 
+    else bottom = midpoint_of(range) + 1
+    end
+    range = (bottom..top)
+  end
+  return midpoint_of range
+end
+
+p binomial_search_original("David")
+
+# make general by separately defining what you need to match to from the array, and improve descriptive names
+def midpoint_of(range)
+  (range.begin + range.end)/2.to_int
+end
+
+def target_at_midpoint (target, range)
+  target == value_to_match(midpoint_of(range))
+end
+
+def target_in_bottom_half (target, range)
+  target < value_to_match(midpoint_of(range))
+end
+
+def binomial_search_function(array, target)
+  lowest_possible_index = 0
+  highest_possible_index = array.size-1
+  range = (lowest_possible_index..highest_possible_index)
+  until target_at_midpoint(target, range) do
+    if target_in_bottom_half(target, range) 
+      highest_possible_index = midpoint_of(range) - 1 
+    else lowest_possible_index = midpoint_of(range) + 1
+    end
+    range = (lowest_possible_index..highest_possible_index)
+  end
+  return midpoint_of(range)
+end
+
+def value_to_match(index) 
+  $students[index].first_name
+end
+
+p binomial_search_function(students, "Betty")
+
+# use a lambda instead of a separate function, which avoids the need for global variable $students and puts everything into the function call
+def midpoint_of(range)
+  (range.begin + range.end)/2.to_int
+end
+
+def target_at_midpoint (target, range, what_target_matches)
+  target == what_target_matches.call(midpoint_of(range))
+end
+
+def target_in_bottom_half (target, range, what_target_matches)
+  target < what_target_matches.call(midpoint_of(range))
+end
+
+def binomial_search(array, target, what_target_matches)
+  lowest_possible_index = 0
+  highest_possible_index = array.size-1
+  range = (lowest_possible_index..highest_possible_index)
+  until target_at_midpoint(target, range, what_target_matches) do
+    if target_in_bottom_half(target, range, what_target_matches) 
+      highest_possible_index = midpoint_of(range) - 1 
+    else lowest_possible_index = midpoint_of(range) + 1
+    end
+    range = (lowest_possible_index..highest_possible_index)
+  end
+  return midpoint_of(range)
+end
+
+p binomial_search(students, "Betty", lambda {|index| students[index].first_name})
