@@ -36,3 +36,12 @@ for (i = 0; i < x.length; i++) {
 // Release 5:
 
 document.body.appendChild(document.getElementById('hidden').content.cloneNode(true));
+
+=begin
+###Reflection
+####What did you learn about the DOM?
+I'd worked with it before. But this was still pretty trial and error. I learned some more about how the javascript access to the DOM uses different syntax than CSS. I think it would seem more natural if we'd done inline styling in HTML but semantic HTML forbids it! We really just guessed about `fontSize` being camelCase and it worked!
+
+####What are some useful methods to use to manipulate the DOM?
+The key seems to be these `getElement` or `getElements` functions, though the latter required some additional manipulation.
+=end
