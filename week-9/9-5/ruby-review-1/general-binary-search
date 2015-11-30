@@ -89,7 +89,7 @@ def over_target (name, range)
   name < $students[midpoint_of(range)].first_name
 end
 
-def binomial_search_original(name)
+def binary_search_original(name)
   bottom = 0
   top = $students.size-1
   range = (bottom..top)
@@ -103,7 +103,7 @@ def binomial_search_original(name)
   return midpoint_of range
 end
 
-p binomial_search_original("David")
+p binary_search_original("David")
 
 # make general by separately defining what you need to match to from the array, and improve descriptive names
 def midpoint_of(range)
@@ -118,7 +118,7 @@ def target_in_bottom_half (target, range)
   target < value_to_match(midpoint_of(range))
 end
 
-def binomial_search_function(array, target)
+def binary_search_function(array, target)
   lowest_possible_index = 0
   highest_possible_index = array.size-1
   range = (lowest_possible_index..highest_possible_index)
@@ -136,7 +136,7 @@ def value_to_match(index)
   $students[index].first_name
 end
 
-p binomial_search_function(students, "Betty")
+p binary_search_function(students, "Betty")
 
 # use a lambda instead of a separate function, which avoids the need for global variable $students and puts everything into the function call
 def midpoint_of(range)
@@ -151,7 +151,7 @@ def target_in_bottom_half (target, range, what_target_matches)
   target < what_target_matches.call(midpoint_of(range))
 end
 
-def binomial_search(array, target, what_target_matches)
+def binary_search(array, target, what_target_matches)
   lowest_possible_index = 0
   highest_possible_index = array.size-1
   range = (lowest_possible_index..highest_possible_index)
@@ -165,4 +165,4 @@ def binomial_search(array, target, what_target_matches)
   return midpoint_of(range)
 end
 
-p binomial_search(students, "Betty", lambda {|index| students[index].first_name})
+p binary_search(students, "Betty", lambda {|index| students[index].first_name})

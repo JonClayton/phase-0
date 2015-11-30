@@ -67,10 +67,22 @@ def binary_search_refactored(array, search_target, original_index_of_current_zer
   first_name = array[index].first_name
   return index+original_index_of_current_zero_index if search_target==first_name 
   adder = search_target < first_name ? 0 : index+1
-  return binary_search(array.slice(adder,index),search_target,original_index_of_current_zero_index+adder)
+  return binary_search_refactored(array.slice(adder,index),search_target,original_index_of_current_zero_index+adder)
 end
 
+
 # Improved version of binary search, generalizing and using a lambda to allow user to descibe what constitutes a match with the ordered array
+def midpoint_of(range)
+  (range.begin + range.end)/2.to_int
+end
+
+def target_at_midpoint (target, range, what_target_matches)
+  target == what_target_matches.call(midpoint_of(range))
+end
+
+def target_in_bottom_half (target, range, what_target_matches)
+  target < what_target_matches.call(midpoint_of(range))
+end
 
 def binary_search(array, target, what_target_matches)
   lowest_possible_index = 0
@@ -85,9 +97,6 @@ def binary_search(array, target, what_target_matches)
   end
   return midpoint_of(range)
 end
-
-
-
 
 # DRIVER TESTS GO BELOW THIS LINE
 # Initial Tests:
@@ -111,6 +120,7 @@ p linear_search(students, "NOT A STUDENT") == -1
 p binary_search_refactored(students, "Ellie")
 p binary_search(students, "Betty", lambda {|index| students[index].first_name})
 
+=begin
 ###Reflection
 ####What concepts did you review in this challenge?
 Fibonacci was about negative index numbers when I used an array, not much review when I switched to just keeping track of two variables. It was nice to do an exercise that made me learn lambdas, which I used to generalize the binary search in the OOP exercise
@@ -120,5 +130,4 @@ Not much other than keeping syntax straight as I go back and for between Ruby an
 
 ####What are you going to study to get more prepared for Phase 1?
 Seeing as how I'm writing this Sunday at 11:31PM, not much for Monday, but I plan to do more Ruby exercise, go deeper into RubyMonk, and continue challenges in Ruby at Coderbyte
-
-
+=end
