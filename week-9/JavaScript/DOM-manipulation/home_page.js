@@ -1,7 +1,7 @@
 // DOM Manipulation Challenge
 
 
-// I worked on this challenge with Jon Clayton.
+// I worked on this challenge with Chris Gomes.
 
 
 // Add your JavaScript calls to this page:
@@ -33,8 +33,6 @@ for (i = 0; i < x.length; i++) {
     x[i].style.fontSize = "2em";
 }
 
-
-
 // Release 5:
-var tmpl = document.getElementById('hidden');
-document.body.appendChild(tmpl.content.cloneNode(true));
+
+document.body.appendChild(document.getElementById('hidden').content.cloneNode(true));
