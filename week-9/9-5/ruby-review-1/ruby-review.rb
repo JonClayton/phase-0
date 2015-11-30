@@ -62,7 +62,7 @@ def linear_search(array, search_target)
   return -1
 end
 
-def binary_search(array, search_target, original_index_of_current_zero_index=0)
+def binary_search_refactored(array, search_target, original_index_of_current_zero_index=0)
   index = array.size/2.to_int
   first_name = array[index].first_name
   return index+original_index_of_current_zero_index if search_target==first_name 
@@ -71,6 +71,22 @@ def binary_search(array, search_target, original_index_of_current_zero_index=0)
 end
 
 p binary_search(students, "Ellie")
+
+# Improved version of binary search, generalizing and using a lambda to allow user to descibe what constitutes a match with the ordered array
+
+def binomial_search(array, target, what_target_matches)
+  lowest_possible_index = 0
+  highest_possible_index = array.size-1
+  range = (lowest_possible_index..highest_possible_index)
+  until target_at_midpoint(target, range, what_target_matches) do
+    if target_in_bottom_half(target, range, what_target_matches) 
+      highest_possible_index = midpoint_of(range) - 1 
+    else lowest_possible_index = midpoint_of(range) + 1
+    end
+    range = (lowest_possible_index..highest_possible_index)
+  end
+  return midpoint_of(range)
+end
 
 
 
@@ -95,7 +111,6 @@ p linear_search(students, "Alex") == 0
 p linear_search(students, "NOT A STUDENT") == -1
 
 
-
-
+p binomial_search(students, "Betty", lambda {|index| students[index].first_name})
 
 # Reflection
