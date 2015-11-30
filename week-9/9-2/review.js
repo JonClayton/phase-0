@@ -12,3 +12,18 @@ function isFibonacci(num) {
 console.log(isFibonacci(7));
 console.log(isFibonacci(8));
 console.log(isFibonacci(9));
+
+=begin 
+###Reflections
+####What concepts did you solidify in working on this challenge? 
+The fewer methods/functions you use in an algorithm, the easier it will be to translate between languages. Loops and variables are lingua franca.
+
+####What was the most difficult part of this challenge?
+As always, remembering syntax when changing langauges. I got an error right away until I remembered to start a function definition with `function` rather than  `def`
+
+####Did you solve the problem in a new way this time?
+The first time I did it in Ruby I used an array.  This time I went straight to the variables for the most recent two terms in the sequence.
+
+####Was your pseudocode different from the Ruby version? What was the same and what was different?
+Umm...psuedocode?  ;-)
+=end
